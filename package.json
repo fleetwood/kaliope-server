@@ -1,0 +1,44 @@
+{
+  "name": "fullstack-tutorial",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "watch": "tsc -w",
+    "dev": "nodemon dist/index.js",
+    "start": "node dist/index.js",
+    "m:create": "npx mikro-orm migration:create",
+    "m:up": "npx mikro-orm migration:up"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^18.11.5",
+    "nodemon": "^2.0.20",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.4"
+  },
+  "dependencies": {
+    "@mikro-orm/cli": "^5.5.0",
+    "@mikro-orm/core": "^5.5.0",
+    "@mikro-orm/migrations": "^5.5.0",
+    "@mikro-orm/postgresql": "^5.5.0",
+    "apollo-server-express": "^3.10.3",
+    "argon2": "^0.30.1",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "firebase": "^9.13.0",
+    "graphql": "^15.3.0",
+    "pg": "^8.8.0",
+    "reflect-metadata": "^0.1.13",
+    "type-graphql": "^1.1.1"
+  },
+  "mikro-orm": {
+    "useTsNode": true,
+    "configPaths": [
+      "./src/mikro-orm.config.ts",
+      "./dist/mikro-orm.config.js"
+    ]
+  }
+}
