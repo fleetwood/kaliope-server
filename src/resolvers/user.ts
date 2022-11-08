@@ -1,13 +1,11 @@
 import { User } from "./../entities/User";
+import { Mutation, Resolver, Query, Ctx, Int, Arg } from "type-graphql";
 import {
-  Mutation,
-  Resolver,
-  Query,
-  Ctx,
-  Int,
-  Arg,
-} from "type-graphql";
-import { MyContext, UserLoginInput, UserQueryInput, UserResponse } from "./../types";
+  MyContext,
+  UserLoginInput,
+  UserQueryInput,
+  UserResponse,
+} from "./../types";
 import argon2 from "argon2";
 
 const NotFoundError = {
@@ -58,20 +56,20 @@ export class UserResolver {
     @Ctx() { em }: MyContext,
     @Arg("params") params: UserLoginInput
   ): Promise<UserResponse> {
-    let user, valid = false;
+    let user,
+      valid = false;
     const { username, email, password } = params;
     if (username) {
       user = await em.findOne(User, { username });
     } else if (email) {
       user = await em.findOne(User, { email });
-    }
-    else {
-      return NotFoundError
+    } else {
+      return NotFoundError;
     }
     if (user) {
-      valid = await argon2.verify(user.password, password)
+      valid = await argon2.verify(user.password, password);
     }
-    return user && valid ? {user} : NotFoundError;
+    return user && valid ? { user } : NotFoundError;
   }
 
   @Mutation(() => User)
@@ -79,7 +77,12 @@ export class UserResolver {
     @Ctx() { em }: MyContext,
     @Arg("username") username: string,
     @Arg("email") email: string,
-    @Arg("password") password: string
+    @Arg("password") password: string,
+    @Arg("uid") uid: string,
+    @Arg("displayName") displayName: string,
+    @Arg("photoURL") photoURL: string,
+    @Arg("emailVerified") emailVerified: boolean,
+    @Arg("isAnonymous") isAnonymous: boolean
   ): Promise<UserResponse> {
     const user = em.create(User, {
       username,
@@ -87,6 +90,11 @@ export class UserResolver {
       password: await argon2.hash(password),
       updatedAt: new Date(),
       createdAt: new Date(),
+      uid,
+      displayName,
+      photoURL,
+      emailVerified,
+      isAnonymous,
     });
     await em.persistAndFlush(user);
     return { user: user };
@@ -97,7 +105,14 @@ export class UserResolver {
     @Ctx() { em }: MyContext,
     @Arg("params") params: UserQueryInput
   ): Promise<UserResponse> {
-    const { id, username, email, password } = params;
+    const { 
+      id,
+      username,
+      email,
+      password,
+      displayName,
+      photoURL,
+    } = params;
     const user = await em.findOne(User, { id });
     if (!user) return NotFoundError;
     if (username) {
@@ -105,6 +120,12 @@ export class UserResolver {
     }
     if (email) {
       user.email = email;
+    }
+    if (displayName) {
+      user.displayName = displayName;
+    }
+    if (photoURL) {
+      user.photoURL = photoURL;
     }
     if (password) {
       user.password = await argon2.hash(password);

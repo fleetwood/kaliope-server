@@ -15,4 +15,25 @@ export class User extends BaseEntity {
   
   @Property({type: "text"})
   password!: string;
+  
+  @Field()
+  @Property({type: "text", unique: true})
+  uid!: string;
+  
+  @Field()
+  @Property({type: "boolean", nullable:true, default: false})
+  emailVerified!: boolean;
+  
+  @Field()
+  @Property({type: "boolean", nullable:true, default: true})
+  isAnonymous: boolean;
+  
+  @Field()
+  @Property({type: "text", nullable: true})
+  displayName: string;
+  
+  @Field()
+  @Property({type: "text", nullable: true})
+  photoURL: string
+  
 }

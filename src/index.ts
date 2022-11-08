@@ -10,6 +10,8 @@ const main = async () => {
   const em = orm.em.fork()
   await orm.getMigrator().up()
   
+  const port = Number(process.env.REACT_APP_PORT) || 4000
+  const host = process.env.REACT_APP_HOST || 'localhost'
 
   const app = express();
   const apolloServer = new ApolloServer({
@@ -23,9 +25,10 @@ const main = async () => {
   await apolloServer.start();
   apolloServer.applyMiddleware({ app });
 
-  app.listen(4000, () => {
-    console.log("Express listening on http://localhost:4000");
-    console.log("GraphQL playground: http://localhost:4000/graphql");
+  console.log(`Starting Kaliope [Server] on http://${host}:${port}...`)
+  app.listen(port, host, () => {
+    console.log(`...Express listening on http://${host}:${port}`);
+    console.log(`...GraphQL listening on http://${host}:${port}/graphql`);
   });
 };
 

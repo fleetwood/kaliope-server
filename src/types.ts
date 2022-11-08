@@ -20,7 +20,14 @@ export class UserQueryInput {
 
   @Field({ nullable: true })
   password?: string;
+
+  @Field({ nullable: true })
+  displayName?: string;
+
+  @Field({ nullable: true })
+  photoURL?: string;
 }
+
 @InputType()
 export class UserLoginInput {
   @Field({ nullable: true })
