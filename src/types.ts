@@ -29,6 +29,33 @@ export class UserQueryInput {
 }
 
 @InputType()
+export class CreateUserInput {
+  @Field()
+  username: string
+  
+  @Field()
+  email: string
+  
+  @Field()
+  password: string
+  
+  @Field()
+  uid: string
+  
+  @Field({ nullable: true })
+  displayName: string
+  
+  @Field({ nullable: true })
+  photoUrl: string
+  
+  @Field({ nullable: true, defaultValue: false })
+  emailVerified: boolean
+  
+  @Field({ nullable: true, defaultValue: true })
+  isAnonymous: boolean
+}
+
+@InputType()
 export class UserLoginInput {
   @Field({ nullable: true })
   username?: string;

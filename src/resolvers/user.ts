@@ -1,6 +1,8 @@
 import { User } from "./../entities/User";
 import { Mutation, Resolver, Query, Ctx, Int, Arg } from "type-graphql";
 import {
+  CreateUserInput,
+  FieldError,
   MyContext,
   UserLoginInput,
   UserQueryInput,
@@ -16,6 +18,8 @@ const NotFoundError = {
     },
   ],
 };
+
+const paramOrDefault = (param:any, defaultTo: any) => param!==undefined && param!==null ? param : defaultTo
 
 @Resolver()
 export class UserResolver {
@@ -55,50 +59,51 @@ export class UserResolver {
   async login(
     @Ctx() { em }: MyContext,
     @Arg("params") params: UserLoginInput
-  ): Promise<UserResponse> {
-    let user,
+    ): Promise<UserResponse> {
+      let user,
       valid = false;
-    const { username, email, password } = params;
-    if (username) {
-      user = await em.findOne(User, { username });
-    } else if (email) {
-      user = await em.findOne(User, { email });
-    } else {
-      return NotFoundError;
+      const { username, email, password } = params;
+      if (username) {
+        user = await em.findOne(User, { username });
+      } else if (email) {
+        user = await em.findOne(User, { email });
+      } else {
+        return NotFoundError;
+      }
+      if (user) {
+        valid = await argon2.verify(user.password, password);
+      }
+      return user && valid ? { user } : NotFoundError;
     }
-    if (user) {
-      valid = await argon2.verify(user.password, password);
-    }
-    return user && valid ? { user } : NotFoundError;
-  }
-
-  @Mutation(() => User)
-  async createUser(
-    @Ctx() { em }: MyContext,
-    @Arg("username") username: string,
-    @Arg("email") email: string,
-    @Arg("password") password: string,
-    @Arg("uid") uid: string,
-    @Arg("displayName") displayName: string,
-    @Arg("photoURL") photoURL: string,
-    @Arg("emailVerified") emailVerified: boolean,
-    @Arg("isAnonymous") isAnonymous: boolean
+    
+    @Mutation(() => User)
+    async createUser(
+      @Ctx() { em }: MyContext,
+      @Arg("params") params: CreateUserInput
   ): Promise<UserResponse> {
-    const user = em.create(User, {
-      username,
-      email,
-      password: await argon2.hash(password),
+    const userParams:any = {
+      ...params,
+      password: await argon2.hash(params.password),
       updatedAt: new Date(),
-      createdAt: new Date(),
-      uid,
-      displayName,
-      photoURL,
-      emailVerified,
-      isAnonymous,
-    });
-    await em.persistAndFlush(user);
-    return { user: user };
-  }
+      createdAt: new Date()
+    };
+
+    const user = em.create(User, userParams);
+    try {
+      await em.persistAndFlush(user);
+      return { user };
+    }
+    catch (e: any) {
+      console.log('Failed creating user',userParams, e);
+      const fieldError:FieldError = {
+        field: "Failed creating user",
+        message: e.message || "Unkown error, check logs for details"
+      }
+      return {
+        errors: [fieldError]
+      }
+    }
+}
 
   @Mutation(() => UserResponse)
   async updateUser(
@@ -110,8 +115,8 @@ export class UserResolver {
       username,
       email,
       password,
-      displayName,
       photoURL,
+      displayName
     } = params;
     const user = await em.findOne(User, { id });
     if (!user) return NotFoundError;
@@ -148,3 +153,20 @@ export class UserResolver {
     return false;
   }
 }
+
+/*
+mutation CreateUser($isAnonymous: Boolean!, $photoUrl: String!, $displayName: String!, $uid: String!, $password: String!, $email: String!, $username: String!, $emailVerified: Boolean!) {
+  createUser(isAnonymous: $isAnonymous, photoURL: $photoUrl, displayName: $displayName, uid: $uid, password: $password, email: $email, username: $username, emailVerified: $emailVerified) {
+    id
+    createdAt
+    updatedAt
+    username
+    email
+    uid
+    emailVerified
+    isAnonymous
+    displayName
+    photoURL
+  }
+}
+*/
