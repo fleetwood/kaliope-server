@@ -5,6 +5,7 @@ import { buildSchema } from "type-graphql";
 import {context, Context} from './context'
 import {resolvers} from './graphql'
 import { __host__, __port__ } from "./constants";
+import { log, todo } from "./helpers";
 
 const main = async () => {
   
@@ -21,11 +22,12 @@ const main = async () => {
   await apolloServer.start();
   apolloServer.applyMiddleware({ app });
 
-  console.log(`Starting Kaliope [Server] on http://${__host__}:${__port__}...`)
+log(`Starting Kaliope [Server] on http://${__host__}:${__port__}...`)
   app.listen(__port__, __host__, () => {
-    console.log(`...Express listening on http://${__host__}:${__port__}`);
-    console.log(`...GraphQL listening on http://${__host__}:${__port__}/graphql`);
+    log(`...Express listening on http://${__host__}:${__port__}`);
+    log(`...GraphQL listening on http://${__host__}:${__port__}/graphql`);
   });
+  todo('PROTECT GRAPHQL PLAYGROUND WITH TOKEN')
 };
 
 main();

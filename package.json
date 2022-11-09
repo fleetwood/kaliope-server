@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "rmdist": "rm -rf dist",
     "watch": "tsc -w",
+    "rebuild": "yarn rmdist && yarn watch",
     "dev": "nodemon dist/index.js",
     "start": "node dist/index.js",
     "prisgen": "npx prisma generate",
