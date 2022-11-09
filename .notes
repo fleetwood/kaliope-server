@@ -1,0 +1,3 @@
+warning " > react-firebase-hooks@5.0.3" has unmet peer dependency "react@>= 16.8.0".
+warning " > react-firebaseui@6.0.0" has unmet peer dependency "react@>=15 <=17".
+warning " > type-graphql@1.1.1" has unmet peer dependency "class-validator@>=0.12.0".

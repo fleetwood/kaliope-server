@@ -1,0 +1,12 @@
+export { AggregateBookArgs } from "./AggregateBookArgs";
+export { CreateManyBookArgs } from "./CreateManyBookArgs";
+export { CreateOneBookArgs } from "./CreateOneBookArgs";
+export { DeleteManyBookArgs } from "./DeleteManyBookArgs";
+export { DeleteOneBookArgs } from "./DeleteOneBookArgs";
+export { FindFirstBookArgs } from "./FindFirstBookArgs";
+export { FindManyBookArgs } from "./FindManyBookArgs";
+export { FindUniqueBookArgs } from "./FindUniqueBookArgs";
+export { GroupByBookArgs } from "./GroupByBookArgs";
+export { UpdateManyBookArgs } from "./UpdateManyBookArgs";
+export { UpdateOneBookArgs } from "./UpdateOneBookArgs";
+export { UpsertOneBookArgs } from "./UpsertOneBookArgs";

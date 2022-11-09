@@ -1,0 +1,87 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator typegraphql {
+  provider = "typegraphql-prisma"
+  output   = "./../src/graphql"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("REACT_APP_DATABASE_URL")
+}
+
+model Book {
+  bookid      String    @id @default(uuid())
+  user        User      @relation(fields: [bookid], references: [userid], map: "author")
+  cover       String?   @db.VarChar(255)
+  created_at  DateTime? @default(now()) @db.Timestamptz(0)
+  updated_at  DateTime? @default(now()) @db.Timestamptz(0)
+  title       String    @db.VarChar(255)
+  description String    @db.Text
+  comments    Comment[]
+
+  @@map("book")
+}
+
+model BookRating {
+  bookratingid String    @id @default(uuid())
+  user         User      @relation(fields: [bookratingid], references: [userid], map: "author")
+  created_at   DateTime? @default(now()) @db.Timestamptz(0)
+  updated_at   DateTime? @default(now()) @db.Timestamptz(0)
+  comment      Comment   @relation(fields: [bookratingid], references: [commentid], map: "book_comment_rating")
+
+  @@map("bookrating")
+}
+
+model Comment {
+  commentid    String      @id @default(uuid())
+  user         User        @relation(fields: [commentid], references: [userid], map: "author")
+  created_at   DateTime?   @default(now()) @db.Timestamptz(0)
+  updated_at   DateTime?   @default(now()) @db.Timestamptz(0)
+  content      String      @db.Text
+  commentingid String?
+  commenton    Comment?    @relation("CommentThread", fields: [commentingid], references: [commentid])
+  comments     Comment[]   @relation("CommentThread")
+  book         Book        @relation(fields: [commentid], references: [bookid], map: "bookfeedback")
+  bookrating   BookRating?
+
+  @@map("comment")
+}
+
+model Post {
+  postid       String    @id @default(uuid())
+  created_at   DateTime? @default(now()) @db.Timestamptz(0)
+  updated_at   DateTime? @default(now()) @db.Timestamptz(0)
+  title        String    @db.VarChar(255)
+  subtitle     String?   @db.VarChar(255)
+  header_image String?   @db.VarChar(255)
+  content      String    @db.Text
+  author       User      @relation(fields: [postid], references: [userid])
+  replytoid    String?
+  post         Post?     @relation("ReplyThread", fields: [replytoid], references: [postid], map: "reply_to")
+  posts        Post[]    @relation("ReplyThread", map: "replies")
+
+  @@map("post")
+}
+
+model User {
+  userid         String       @id @default(uuid())
+  created_at     DateTime?    @default(now()) @db.Timestamptz(0)
+  updated_at     DateTime?    @default(now()) @db.Timestamptz(0)
+  username       String       @unique(map: "user_username_unique")
+  email          String       @unique(map: "user_email_unique")
+  password       String
+  uid            String       @unique(map: "user_uid_unique")
+  email_verified Boolean?     @default(false)
+  is_anonymous   Boolean?     @default(true)
+  display_name   String?
+  photo_url      String?
+  posts          Post[]
+  books          Book[]
+  comments       Comment[]
+  bookratings    BookRating[]
+
+  @@map("user")
+}

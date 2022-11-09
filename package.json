@@ -7,41 +7,51 @@
     "watch": "tsc -w",
     "dev": "nodemon dist/index.js",
     "start": "node dist/index.js",
-    "m:create": "npx mikro-orm migration:create",
-    "m:up": "npx mikro-orm migration:up"
+    "prisgen": "npx prisma generate",
+    "prisfrm": "npx prisma format",
+    "prismgd": "npx prisma migrate dev",
+    "prisrst": "npx prisma migrate reset",
+    "gql:gen": "yarn graphql-codegen",
+    "codegen": "graphql-codegen --config codegen.ts"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed/initial.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@graphql-codegen/cli": "2.13.11",
+    "@graphql-codegen/client-preset": "^1.1.3",
+    "@graphql-codegen/introspection": "2.2.1",
+    "@graphql-codegen/typescript": "2.8.1",
+    "@graphql-codegen/typescript-resolvers": "2.7.6",
+    "@types/graphql-fields": "^1.3.4",
     "@types/node": "^18.11.5",
     "nodemon": "^2.0.20",
     "ts-node": "^10.9.1",
     "typescript": "^4.8.4"
   },
   "dependencies": {
-    "@mikro-orm/cli": "^5.5.0",
-    "@mikro-orm/core": "^5.5.0",
-    "@mikro-orm/migrations": "^5.5.0",
-    "@mikro-orm/postgresql": "^5.5.0",
+    "@apollo/server": "^4.1.1",
+    "@prisma/client": "4.6.0",
     "apollo-server-express": "^3.10.3",
-    "argon2": "^0.30.1",
+    "argon2": "^0.30.2",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
     "firebase": "^9.13.0",
     "graphql": "^15.3.0",
+    "graphql-fields": "^2.0.3",
+    "graphql-scalars": "^1.20.0",
+    "lorem-ipsum": "^2.0.8",
     "pg": "^8.8.0",
+    "prisma": "4.5.0",
     "react-firebase-hooks": "^5.0.3",
     "react-firebaseui": "^6.0.0",
     "reflect-metadata": "^0.1.13",
     "type-graphql": "^1.1.1",
+    "typegraphql-prisma": "^0.22.1",
+    "typeorm": "^0.3.10",
     "unsplash-js": "^7.0.15"
-  },
-  "mikro-orm": {
-    "useTsNode": true,
-    "configPaths": [
-      "./src/mikro-orm.config.ts",
-      "./dist/mikro-orm.config.js"
-    ]
   }
 }

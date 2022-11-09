@@ -1,0 +1,12 @@
+export { AggregateBookRatingArgs } from "./AggregateBookRatingArgs";
+export { CreateManyBookRatingArgs } from "./CreateManyBookRatingArgs";
+export { CreateOneBookRatingArgs } from "./CreateOneBookRatingArgs";
+export { DeleteManyBookRatingArgs } from "./DeleteManyBookRatingArgs";
+export { DeleteOneBookRatingArgs } from "./DeleteOneBookRatingArgs";
+export { FindFirstBookRatingArgs } from "./FindFirstBookRatingArgs";
+export { FindManyBookRatingArgs } from "./FindManyBookRatingArgs";
+export { FindUniqueBookRatingArgs } from "./FindUniqueBookRatingArgs";
+export { GroupByBookRatingArgs } from "./GroupByBookRatingArgs";
+export { UpdateManyBookRatingArgs } from "./UpdateManyBookRatingArgs";
+export { UpdateOneBookRatingArgs } from "./UpdateOneBookRatingArgs";
+export { UpsertOneBookRatingArgs } from "./UpsertOneBookRatingArgs";
