@@ -205,7 +205,7 @@ async function main() {
     },
   });
   await confirm(marisha)
-
+  
   const nydia = await prisma.user.create({
     data: {
       username: "Nydia",
@@ -225,7 +225,7 @@ async function main() {
       },
     },
   });
-  console.log(`Seeded ${nydia.display_name} (${nydia.userid})`);
+  await confirm(nydia)
 }
 main()
   .then(async () => {
