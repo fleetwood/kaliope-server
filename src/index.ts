@@ -2,7 +2,7 @@ import "reflect-metadata"
 import express from "express";
 import { ApolloServer } from "apollo-server-express";
 import { buildSchema } from "type-graphql";
-import {context, Context} from './context'
+import {prismaContext, Context} from './context'
 import {resolvers} from './graphql'
 import { __host__, __port__ } from "./constants";
 import { log, todo } from "./helpers";
@@ -16,11 +16,12 @@ const main = async () => {
       resolvers,
       validate: false,
     }),
-    context
+    context: prismaContext
   });
 
   await apolloServer.start();
   apolloServer.applyMiddleware({ app });
+
 
 log(`Starting Kaliope [Server] on http://${__host__}:${__port__}...`)
   app.listen(__port__, __host__, () => {
