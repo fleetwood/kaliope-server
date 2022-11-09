@@ -3,8 +3,6 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { DateTimeNullableFilter } from "../inputs/DateTimeNullableFilter";
-import { PostListRelationFilter } from "../inputs/PostListRelationFilter";
-import { PostRelationFilter } from "../inputs/PostRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
 import { StringNullableFilter } from "../inputs/StringNullableFilter";
 import { UserRelationFilter } from "../inputs/UserRelationFilter";
@@ -68,18 +66,8 @@ export class PostWhereInput {
   })
   author?: UserRelationFilter | undefined;
 
-  @TypeGraphQL.Field(_type => StringNullableFilter, {
+  @TypeGraphQL.Field(_type => StringFilter, {
     nullable: true
   })
-  replytoid?: StringNullableFilter | undefined;
-
-  @TypeGraphQL.Field(_type => PostRelationFilter, {
-    nullable: true
-  })
-  post?: PostRelationFilter | undefined;
-
-  @TypeGraphQL.Field(_type => PostListRelationFilter, {
-    nullable: true
-  })
-  posts?: PostListRelationFilter | undefined;
+  authorId?: StringFilter | undefined;
 }

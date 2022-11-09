@@ -4,15 +4,18 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { NullableDateTimeFieldUpdateOperationsInput } from "../inputs/NullableDateTimeFieldUpdateOperationsInput";
 import { NullableStringFieldUpdateOperationsInput } from "../inputs/NullableStringFieldUpdateOperationsInput";
-import { PostUpdateManyWithoutPostNestedInput } from "../inputs/PostUpdateManyWithoutPostNestedInput";
-import { PostUpdateOneWithoutPostsNestedInput } from "../inputs/PostUpdateOneWithoutPostsNestedInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
-import { UserUpdateOneRequiredWithoutPostsNestedInput } from "../inputs/UserUpdateOneRequiredWithoutPostsNestedInput";
+import { UserUpdateOneRequiredWithoutUser_postsNestedInput } from "../inputs/UserUpdateOneRequiredWithoutUser_postsNestedInput";
 
 @TypeGraphQL.InputType("PostUpdateInput", {
   isAbstract: true
 })
 export class PostUpdateInput {
+  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  postid?: StringFieldUpdateOperationsInput | undefined;
+
   @TypeGraphQL.Field(_type => NullableDateTimeFieldUpdateOperationsInput, {
     nullable: true
   })
@@ -43,18 +46,8 @@ export class PostUpdateInput {
   })
   content?: StringFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(_type => UserUpdateOneRequiredWithoutPostsNestedInput, {
+  @TypeGraphQL.Field(_type => UserUpdateOneRequiredWithoutUser_postsNestedInput, {
     nullable: true
   })
-  author?: UserUpdateOneRequiredWithoutPostsNestedInput | undefined;
-
-  @TypeGraphQL.Field(_type => PostUpdateOneWithoutPostsNestedInput, {
-    nullable: true
-  })
-  post?: PostUpdateOneWithoutPostsNestedInput | undefined;
-
-  @TypeGraphQL.Field(_type => PostUpdateManyWithoutPostNestedInput, {
-    nullable: true
-  })
-  posts?: PostUpdateManyWithoutPostNestedInput | undefined;
+  author?: UserUpdateOneRequiredWithoutUser_postsNestedInput | undefined;
 }

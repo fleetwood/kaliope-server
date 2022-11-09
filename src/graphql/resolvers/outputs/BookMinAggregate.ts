@@ -15,6 +15,11 @@ export class BookMinAggregate {
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
+  authorid!: string | null;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
   cover!: string | null;
 
   @TypeGraphQL.Field(_type => Date, {

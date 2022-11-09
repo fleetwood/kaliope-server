@@ -60,8 +60,8 @@ export class PostScalarWhereInput {
   })
   content?: StringFilter | undefined;
 
-  @TypeGraphQL.Field(_type => StringNullableFilter, {
+  @TypeGraphQL.Field(_type => StringFilter, {
     nullable: true
   })
-  replytoid?: StringNullableFilter | undefined;
+  authorId?: StringFilter | undefined;
 }

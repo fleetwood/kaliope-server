@@ -16,6 +16,11 @@ export class BookMinOrderByAggregateInput {
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
+  authorid?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
   cover?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {

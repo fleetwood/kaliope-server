@@ -8,7 +8,7 @@ export enum PostScalarFieldEnum {
   subtitle = "subtitle",
   header_image = "header_image",
   content = "content",
-  replytoid = "replytoid"
+  authorId = "authorId"
 }
 TypeGraphQL.registerEnumType(PostScalarFieldEnum, {
   name: "PostScalarFieldEnum",

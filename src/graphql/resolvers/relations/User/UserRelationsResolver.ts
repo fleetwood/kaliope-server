@@ -4,10 +4,10 @@ import { BookRating } from "../../../models/BookRating";
 import { Comment } from "../../../models/Comment";
 import { Post } from "../../../models/Post";
 import { User } from "../../../models/User";
-import { UserBookratingsArgs } from "./args/UserBookratingsArgs";
-import { UserBooksArgs } from "./args/UserBooksArgs";
-import { UserCommentsArgs } from "./args/UserCommentsArgs";
-import { UserPostsArgs } from "./args/UserPostsArgs";
+import { UserUser_booksArgs } from "./args/UserUser_booksArgs";
+import { UserUser_commentsArgs } from "./args/UserUser_commentsArgs";
+import { UserUser_postsArgs } from "./args/UserUser_postsArgs";
+import { UserUser_ratingsArgs } from "./args/UserUser_ratingsArgs";
 import { transformFields, getPrismaFromContext, transformCountFieldIntoSelectRelationsCount } from "../../../helpers";
 
 @TypeGraphQL.Resolver(_of => User)
@@ -15,44 +15,44 @@ export class UserRelationsResolver {
   @TypeGraphQL.FieldResolver(_type => [Post], {
     nullable: false
   })
-  async posts(@TypeGraphQL.Root() user: User, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: UserPostsArgs): Promise<Post[]> {
+  async user_posts(@TypeGraphQL.Root() user: User, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: UserUser_postsArgs): Promise<Post[]> {
     return getPrismaFromContext(ctx).user.findUnique({
       where: {
         userid: user.userid,
       },
-    }).posts(args);
-  }
-
-  @TypeGraphQL.FieldResolver(_type => [Book], {
-    nullable: false
-  })
-  async books(@TypeGraphQL.Root() user: User, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: UserBooksArgs): Promise<Book[]> {
-    return getPrismaFromContext(ctx).user.findUnique({
-      where: {
-        userid: user.userid,
-      },
-    }).books(args);
+    }).user_posts(args);
   }
 
   @TypeGraphQL.FieldResolver(_type => [Comment], {
     nullable: false
   })
-  async comments(@TypeGraphQL.Root() user: User, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: UserCommentsArgs): Promise<Comment[]> {
+  async user_comments(@TypeGraphQL.Root() user: User, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: UserUser_commentsArgs): Promise<Comment[]> {
     return getPrismaFromContext(ctx).user.findUnique({
       where: {
         userid: user.userid,
       },
-    }).comments(args);
+    }).user_comments(args);
+  }
+
+  @TypeGraphQL.FieldResolver(_type => [Book], {
+    nullable: false
+  })
+  async user_books(@TypeGraphQL.Root() user: User, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: UserUser_booksArgs): Promise<Book[]> {
+    return getPrismaFromContext(ctx).user.findUnique({
+      where: {
+        userid: user.userid,
+      },
+    }).user_books(args);
   }
 
   @TypeGraphQL.FieldResolver(_type => [BookRating], {
     nullable: false
   })
-  async bookratings(@TypeGraphQL.Root() user: User, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: UserBookratingsArgs): Promise<BookRating[]> {
+  async user_ratings(@TypeGraphQL.Root() user: User, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: UserUser_ratingsArgs): Promise<BookRating[]> {
     return getPrismaFromContext(ctx).user.findUnique({
       where: {
         userid: user.userid,
       },
-    }).bookratings(args);
+    }).user_ratings(args);
   }
 }

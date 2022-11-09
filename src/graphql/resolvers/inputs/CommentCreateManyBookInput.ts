@@ -7,6 +7,16 @@ import { DecimalJSScalar } from "../../scalars";
   isAbstract: true
 })
 export class CommentCreateManyBookInput {
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  commentid?: string | undefined;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  authorid!: string;
+
   @TypeGraphQL.Field(_type => Date, {
     nullable: true
   })
@@ -21,9 +31,4 @@ export class CommentCreateManyBookInput {
     nullable: false
   })
   content!: string;
-
-  @TypeGraphQL.Field(_type => String, {
-    nullable: true
-  })
-  commentingid?: string | undefined;
 }

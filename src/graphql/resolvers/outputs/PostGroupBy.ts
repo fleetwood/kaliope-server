@@ -46,9 +46,9 @@ export class PostGroupBy {
   content!: string;
 
   @TypeGraphQL.Field(_type => String, {
-    nullable: true
+    nullable: false
   })
-  replytoid!: string | null;
+  authorId!: string;
 
   @TypeGraphQL.Field(_type => PostCountAggregate, {
     nullable: true

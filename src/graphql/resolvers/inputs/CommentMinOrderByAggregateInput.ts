@@ -16,6 +16,11 @@ export class CommentMinOrderByAggregateInput {
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
+  authorid?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
   created_at?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {
@@ -31,5 +36,5 @@ export class CommentMinOrderByAggregateInput {
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
-  commentingid?: "asc" | "desc" | undefined;
+  bookid?: "asc" | "desc" | undefined;
 }

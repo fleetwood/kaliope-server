@@ -2,20 +2,26 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { BookRatingUpdateManyWithoutBookNestedInput } from "../inputs/BookRatingUpdateManyWithoutBookNestedInput";
 import { CommentUpdateManyWithoutBookNestedInput } from "../inputs/CommentUpdateManyWithoutBookNestedInput";
 import { NullableDateTimeFieldUpdateOperationsInput } from "../inputs/NullableDateTimeFieldUpdateOperationsInput";
 import { NullableStringFieldUpdateOperationsInput } from "../inputs/NullableStringFieldUpdateOperationsInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
-import { UserUpdateOneRequiredWithoutBooksNestedInput } from "../inputs/UserUpdateOneRequiredWithoutBooksNestedInput";
+import { UserUpdateOneRequiredWithoutUser_booksNestedInput } from "../inputs/UserUpdateOneRequiredWithoutUser_booksNestedInput";
 
 @TypeGraphQL.InputType("BookUpdateInput", {
   isAbstract: true
 })
 export class BookUpdateInput {
-  @TypeGraphQL.Field(_type => UserUpdateOneRequiredWithoutBooksNestedInput, {
+  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
     nullable: true
   })
-  user?: UserUpdateOneRequiredWithoutBooksNestedInput | undefined;
+  bookid?: StringFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => UserUpdateOneRequiredWithoutUser_booksNestedInput, {
+    nullable: true
+  })
+  author?: UserUpdateOneRequiredWithoutUser_booksNestedInput | undefined;
 
   @TypeGraphQL.Field(_type => NullableStringFieldUpdateOperationsInput, {
     nullable: true
@@ -45,5 +51,10 @@ export class BookUpdateInput {
   @TypeGraphQL.Field(_type => CommentUpdateManyWithoutBookNestedInput, {
     nullable: true
   })
-  comments?: CommentUpdateManyWithoutBookNestedInput | undefined;
+  book_comments?: CommentUpdateManyWithoutBookNestedInput | undefined;
+
+  @TypeGraphQL.Field(_type => BookRatingUpdateManyWithoutBookNestedInput, {
+    nullable: true
+  })
+  book_ratings?: BookRatingUpdateManyWithoutBookNestedInput | undefined;
 }

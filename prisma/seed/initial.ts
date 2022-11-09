@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { hash } from "argon2";
 import console from "console";
+import { create } from "domain";
 import { UUIDMock } from "graphql-scalars";
 
 const prisma = new PrismaClient();
@@ -69,13 +70,30 @@ async function main() {
       photo_url: "https://xsgames.co/randomusers/assets/avatars/female/68.jpg",
       created_at: now(),
       updated_at: now(),
-      posts: {
-        create: {
-          title: sentences(),
-          subtitle: subtitleMaybe(),
-          content: par(),
-        },
-      },
+      user_posts: {
+        create: [
+          {
+            title: sentences(),
+            subtitle: subtitleMaybe(),
+            content: par()
+          },
+          {
+            title: sentences(),
+            subtitle: subtitleMaybe(),
+            content: par()
+          },
+          {
+            title: sentences(),
+            subtitle: subtitleMaybe(),
+            content: par()
+          },
+          {
+            title: sentences(),
+            subtitle: subtitleMaybe(),
+            content: par()
+          },
+        ]
+      }
     },
   });
   await confirm(tamiko);
@@ -90,7 +108,7 @@ async function main() {
       photo_url: "https://xsgames.co/randomusers/assets/avatars/female/62.jpg",
       created_at: now(),
       updated_at: now(),
-      posts: {
+      user_posts: {
         create: {
           title: sentences(),
           subtitle: subtitleMaybe(),
@@ -111,7 +129,7 @@ async function main() {
       photo_url: "https://xsgames.co/randomusers/assets/avatars/female/81.jpg",
       created_at: now(),
       updated_at: now(),
-      posts: {
+      user_posts: {
         create: {
           title: sentences(),
           subtitle: subtitleMaybe(),
@@ -132,12 +150,39 @@ async function main() {
       photo_url: "https://xsgames.co/randomusers/assets/avatars/female/36.jpg",
       created_at: now(),
       updated_at: now(),
-      posts: {
-        create: {
+      user_posts: {
+        create: [
+        {
           title: sentences(),
           subtitle: subtitleMaybe(),
           content: par(),
         },
+        {
+          title: sentences(),
+          subtitle: subtitleMaybe(),
+          content: par(),
+        },
+        {
+          title: sentences(),
+          subtitle: subtitleMaybe(),
+          content: par(),
+        },
+        {
+          title: sentences(),
+          subtitle: subtitleMaybe(),
+          content: par(),
+        },
+        {
+          title: sentences(),
+          subtitle: subtitleMaybe(),
+          content: par(),
+        },
+        {
+          title: sentences(),
+          subtitle: subtitleMaybe(),
+          content: par(),
+        },
+      ]
       },
     },
   });
@@ -153,7 +198,7 @@ async function main() {
       photo_url: "https://xsgames.co/randomusers/assets/avatars/female/55.jpg",
       created_at: now(),
       updated_at: now(),
-      posts: {
+      user_posts: {
         create: {
           title: sentences(),
           subtitle: subtitleMaybe(),
@@ -174,7 +219,7 @@ async function main() {
       photo_url: "https://xsgames.co/randomusers/assets/avatars/female/12.jpg",
       created_at: now(),
       updated_at: now(),
-      posts: {
+      user_posts: {
         create: {
           title: sentences(),
           subtitle: subtitleMaybe(),
@@ -195,7 +240,7 @@ async function main() {
       photo_url: "https://xsgames.co/randomusers/assets/avatars/female/23.jpg",
       created_at: now(),
       updated_at: now(),
-      posts: {
+      user_posts: {
         create: {
           title: sentences(),
           subtitle: subtitleMaybe(),
@@ -216,13 +261,29 @@ async function main() {
       photo_url: "https://xsgames.co/randomusers/assets/avatars/female/98.jpg",
       created_at: now(),
       updated_at: now(),
-      posts: {
-        create: {
-          title: sentences(),
-          subtitle: subtitleMaybe(),
-          content: par(),
-        },
-      },
+      user_posts: {
+        create: [
+          {
+            title: sentences(),
+            subtitle: subtitleMaybe(),
+            content: par(),
+          },
+          {
+            title: 'gyeote meomulleojullae',
+            subtitle: 'naege yaksokhaejullae',
+            content: 'son daemyeon naragalkka buseojilkka geobna geobna geobna'
+          },
+          {
+            title: sentences(),
+            subtitle: subtitleMaybe(),
+            content: par(),
+          },
+          {
+            title: 'gyeote meomulleojullae',
+            subtitle: 'naege yaksokhaejullae',
+            content: 'son daemyeon naragalkka buseojilkka geobna geobna geobna'
+          }
+      ]},
     },
   });
   await confirm(nydia)

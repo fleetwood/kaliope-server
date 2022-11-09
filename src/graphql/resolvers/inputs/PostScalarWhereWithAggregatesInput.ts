@@ -60,8 +60,8 @@ export class PostScalarWhereWithAggregatesInput {
   })
   content?: StringWithAggregatesFilter | undefined;
 
-  @TypeGraphQL.Field(_type => StringNullableWithAggregatesFilter, {
+  @TypeGraphQL.Field(_type => StringWithAggregatesFilter, {
     nullable: true
   })
-  replytoid?: StringNullableWithAggregatesFilter | undefined;
+  authorId?: StringWithAggregatesFilter | undefined;
 }

@@ -2,20 +2,22 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { BookCreateNestedOneWithoutCommentsInput } from "../inputs/BookCreateNestedOneWithoutCommentsInput";
-import { BookRatingCreateNestedOneWithoutCommentInput } from "../inputs/BookRatingCreateNestedOneWithoutCommentInput";
-import { CommentCreateNestedManyWithoutCommentonInput } from "../inputs/CommentCreateNestedManyWithoutCommentonInput";
-import { CommentCreateNestedOneWithoutCommentsInput } from "../inputs/CommentCreateNestedOneWithoutCommentsInput";
-import { UserCreateNestedOneWithoutCommentsInput } from "../inputs/UserCreateNestedOneWithoutCommentsInput";
+import { BookCreateNestedOneWithoutBook_commentsInput } from "../inputs/BookCreateNestedOneWithoutBook_commentsInput";
+import { UserCreateNestedOneWithoutUser_commentsInput } from "../inputs/UserCreateNestedOneWithoutUser_commentsInput";
 
 @TypeGraphQL.InputType("CommentCreateInput", {
   isAbstract: true
 })
 export class CommentCreateInput {
-  @TypeGraphQL.Field(_type => UserCreateNestedOneWithoutCommentsInput, {
+  @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
-  user?: UserCreateNestedOneWithoutCommentsInput | undefined;
+  commentid?: string | undefined;
+
+  @TypeGraphQL.Field(_type => UserCreateNestedOneWithoutUser_commentsInput, {
+    nullable: false
+  })
+  author!: UserCreateNestedOneWithoutUser_commentsInput;
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: true
@@ -32,23 +34,8 @@ export class CommentCreateInput {
   })
   content!: string;
 
-  @TypeGraphQL.Field(_type => CommentCreateNestedOneWithoutCommentsInput, {
-    nullable: true
+  @TypeGraphQL.Field(_type => BookCreateNestedOneWithoutBook_commentsInput, {
+    nullable: false
   })
-  commenton?: CommentCreateNestedOneWithoutCommentsInput | undefined;
-
-  @TypeGraphQL.Field(_type => CommentCreateNestedManyWithoutCommentonInput, {
-    nullable: true
-  })
-  comments?: CommentCreateNestedManyWithoutCommentonInput | undefined;
-
-  @TypeGraphQL.Field(_type => BookCreateNestedOneWithoutCommentsInput, {
-    nullable: true
-  })
-  book?: BookCreateNestedOneWithoutCommentsInput | undefined;
-
-  @TypeGraphQL.Field(_type => BookRatingCreateNestedOneWithoutCommentInput, {
-    nullable: true
-  })
-  bookrating?: BookRatingCreateNestedOneWithoutCommentInput | undefined;
+  book!: BookCreateNestedOneWithoutBook_commentsInput;
 }

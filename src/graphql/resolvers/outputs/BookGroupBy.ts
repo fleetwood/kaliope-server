@@ -16,6 +16,11 @@ export class BookGroupBy {
   bookid!: string;
 
   @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  authorid!: string;
+
+  @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
   cover!: string | null;

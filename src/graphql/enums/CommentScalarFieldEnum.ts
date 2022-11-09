@@ -2,10 +2,11 @@ import * as TypeGraphQL from "type-graphql";
 
 export enum CommentScalarFieldEnum {
   commentid = "commentid",
+  authorid = "authorid",
   created_at = "created_at",
   updated_at = "updated_at",
   content = "content",
-  commentingid = "commentingid"
+  bookid = "bookid"
 }
 TypeGraphQL.registerEnumType(CommentScalarFieldEnum, {
   name: "CommentScalarFieldEnum",

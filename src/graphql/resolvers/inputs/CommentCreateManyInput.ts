@@ -12,6 +12,11 @@ export class CommentCreateManyInput {
   })
   commentid?: string | undefined;
 
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  authorid!: string;
+
   @TypeGraphQL.Field(_type => Date, {
     nullable: true
   })
@@ -28,7 +33,7 @@ export class CommentCreateManyInput {
   content!: string;
 
   @TypeGraphQL.Field(_type => String, {
-    nullable: true
+    nullable: false
   })
-  commentingid?: string | undefined;
+  bookid!: string;
 }

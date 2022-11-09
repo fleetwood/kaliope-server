@@ -35,5 +35,5 @@ export class FindFirstBookArgs {
   @TypeGraphQL.Field(_type => [BookScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"bookid" | "cover" | "created_at" | "updated_at" | "title" | "description"> | undefined;
+  distinct?: Array<"bookid" | "authorid" | "cover" | "created_at" | "updated_at" | "title" | "description"> | undefined;
 }

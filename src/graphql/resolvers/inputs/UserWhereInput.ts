@@ -88,20 +88,20 @@ export class UserWhereInput {
   @TypeGraphQL.Field(_type => PostListRelationFilter, {
     nullable: true
   })
-  posts?: PostListRelationFilter | undefined;
-
-  @TypeGraphQL.Field(_type => BookListRelationFilter, {
-    nullable: true
-  })
-  books?: BookListRelationFilter | undefined;
+  user_posts?: PostListRelationFilter | undefined;
 
   @TypeGraphQL.Field(_type => CommentListRelationFilter, {
     nullable: true
   })
-  comments?: CommentListRelationFilter | undefined;
+  user_comments?: CommentListRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => BookListRelationFilter, {
+    nullable: true
+  })
+  user_books?: BookListRelationFilter | undefined;
 
   @TypeGraphQL.Field(_type => BookRatingListRelationFilter, {
     nullable: true
   })
-  bookratings?: BookRatingListRelationFilter | undefined;
+  user_ratings?: BookRatingListRelationFilter | undefined;
 }

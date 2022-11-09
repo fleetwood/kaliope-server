@@ -35,5 +35,5 @@ export class FindManyBookRatingArgs {
   @TypeGraphQL.Field(_type => [BookRatingScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"bookratingid" | "created_at" | "updated_at"> | undefined;
+  distinct?: Array<"bookratingid" | "authorid" | "bookid" | "created_at" | "updated_at"> | undefined;
 }

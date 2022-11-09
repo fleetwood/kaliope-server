@@ -1,6 +1,6 @@
 import * as TypeGraphQL from "type-graphql";
+import { Book } from "../../../models/Book";
 import { BookRating } from "../../../models/BookRating";
-import { Comment } from "../../../models/Comment";
 import { User } from "../../../models/User";
 import { transformFields, getPrismaFromContext, transformCountFieldIntoSelectRelationsCount } from "../../../helpers";
 
@@ -9,22 +9,22 @@ export class BookRatingRelationsResolver {
   @TypeGraphQL.FieldResolver(_type => User, {
     nullable: false
   })
-  async user(@TypeGraphQL.Root() bookRating: BookRating, @TypeGraphQL.Ctx() ctx: any): Promise<User> {
+  async author(@TypeGraphQL.Root() bookRating: BookRating, @TypeGraphQL.Ctx() ctx: any): Promise<User> {
     return getPrismaFromContext(ctx).bookRating.findUnique({
       where: {
         bookratingid: bookRating.bookratingid,
       },
-    }).user({});
+    }).author({});
   }
 
-  @TypeGraphQL.FieldResolver(_type => Comment, {
+  @TypeGraphQL.FieldResolver(_type => Book, {
     nullable: false
   })
-  async comment(@TypeGraphQL.Root() bookRating: BookRating, @TypeGraphQL.Ctx() ctx: any): Promise<Comment> {
+  async book(@TypeGraphQL.Root() bookRating: BookRating, @TypeGraphQL.Ctx() ctx: any): Promise<Book> {
     return getPrismaFromContext(ctx).bookRating.findUnique({
       where: {
         bookratingid: bookRating.bookratingid,
       },
-    }).comment({});
+    }).book({});
   }
 }

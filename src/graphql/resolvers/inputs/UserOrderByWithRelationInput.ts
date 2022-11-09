@@ -70,20 +70,20 @@ export class UserOrderByWithRelationInput {
   @TypeGraphQL.Field(_type => PostOrderByRelationAggregateInput, {
     nullable: true
   })
-  posts?: PostOrderByRelationAggregateInput | undefined;
-
-  @TypeGraphQL.Field(_type => BookOrderByRelationAggregateInput, {
-    nullable: true
-  })
-  books?: BookOrderByRelationAggregateInput | undefined;
+  user_posts?: PostOrderByRelationAggregateInput | undefined;
 
   @TypeGraphQL.Field(_type => CommentOrderByRelationAggregateInput, {
     nullable: true
   })
-  comments?: CommentOrderByRelationAggregateInput | undefined;
+  user_comments?: CommentOrderByRelationAggregateInput | undefined;
+
+  @TypeGraphQL.Field(_type => BookOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  user_books?: BookOrderByRelationAggregateInput | undefined;
 
   @TypeGraphQL.Field(_type => BookRatingOrderByRelationAggregateInput, {
     nullable: true
   })
-  bookratings?: BookRatingOrderByRelationAggregateInput | undefined;
+  user_ratings?: BookRatingOrderByRelationAggregateInput | undefined;
 }

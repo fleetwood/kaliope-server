@@ -13,41 +13,40 @@ datasource db {
 }
 
 model Book {
-  bookid      String    @id @default(uuid())
-  user        User      @relation(fields: [bookid], references: [userid], map: "author")
-  cover       String?   @db.VarChar(255)
-  created_at  DateTime? @default(now()) @db.Timestamptz(0)
-  updated_at  DateTime? @default(now()) @db.Timestamptz(0)
-  title       String    @db.VarChar(255)
-  description String    @db.Text
-  comments    Comment[]
-
-  @@map("book")
+  bookid        String       @id @default(uuid())
+  author        User         @relation("user_books", fields: [authorid], references: [userid])
+  authorid      String
+  cover         String?      @db.VarChar(255)
+  created_at    DateTime?    @default(now()) @db.Timestamptz(0)
+  updated_at    DateTime?    @default(now()) @db.Timestamptz(0)
+  title         String       @db.VarChar(255)
+  description   String       @db.Text
+  book_comments Comment[]    @relation("book_comments")
+  book_ratings  BookRating[] @relation("book_ratings")
 }
 
 model BookRating {
   bookratingid String    @id @default(uuid())
-  user         User      @relation(fields: [bookratingid], references: [userid], map: "author")
+  author       User      @relation("user_ratings", fields: [authorid], references: [userid])
+  authorid     String
+  book         Book      @relation("book_ratings", fields: [bookid], references: [bookid])
+  bookid       String
   created_at   DateTime? @default(now()) @db.Timestamptz(0)
   updated_at   DateTime? @default(now()) @db.Timestamptz(0)
-  comment      Comment   @relation(fields: [bookratingid], references: [commentid], map: "book_comment_rating")
-
-  @@map("bookrating")
 }
 
 model Comment {
-  commentid    String      @id @default(uuid())
-  user         User        @relation(fields: [commentid], references: [userid], map: "author")
-  created_at   DateTime?   @default(now()) @db.Timestamptz(0)
-  updated_at   DateTime?   @default(now()) @db.Timestamptz(0)
-  content      String      @db.Text
-  commentingid String?
-  commenton    Comment?    @relation("CommentThread", fields: [commentingid], references: [commentid])
-  comments     Comment[]   @relation("CommentThread")
-  book         Book        @relation(fields: [commentid], references: [bookid], map: "bookfeedback")
-  bookrating   BookRating?
-
-  @@map("comment")
+  commentid  String    @id @default(uuid())
+  author     User      @relation("user_comments", fields: [authorid], references: [userid])
+  authorid   String
+  created_at DateTime? @default(now()) @db.Timestamptz(0)
+  updated_at DateTime? @default(now()) @db.Timestamptz(0)
+  content    String    @db.Text
+  // commentingid String?
+  // commenton    Comment?    @relation("CommentThread", fields: [commentingid], references: [commentid])
+  // comments     Comment[]   @relation("CommentThread")
+  book       Book      @relation("book_comments", fields: [bookid], references: [bookid])
+  bookid     String
 }
 
 model Post {
@@ -58,12 +57,10 @@ model Post {
   subtitle     String?   @db.VarChar(255)
   header_image String?   @db.VarChar(255)
   content      String    @db.Text
-  author       User      @relation(fields: [postid], references: [userid])
-  replytoid    String?
-  post         Post?     @relation("ReplyThread", fields: [replytoid], references: [postid], map: "reply_to")
-  posts        Post[]    @relation("ReplyThread", map: "replies")
-
-  @@map("post")
+  author       User      @relation("user_posts", fields: [authorId], references: [userid])
+  authorId     String
+  // post         Post?     @relation("ReplyThread", fields: [postid], references: [postid], map: "reply_to_post")
+  // posts        Post[]    @relation("ReplyThread", map: "replies")
 }
 
 model User {
@@ -78,10 +75,8 @@ model User {
   is_anonymous   Boolean?     @default(true)
   display_name   String?
   photo_url      String?
-  posts          Post[]
-  books          Book[]
-  comments       Comment[]
-  bookratings    BookRating[]
-
-  @@map("user")
+  user_posts     Post[]       @relation("user_posts")
+  user_comments  Comment[]    @relation("user_comments")
+  user_books     Book[]       @relation("user_books")
+  user_ratings   BookRating[] @relation("user_ratings")
 }

@@ -2,14 +2,17 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { PostCreateNestedManyWithoutPostInput } from "../inputs/PostCreateNestedManyWithoutPostInput";
-import { PostCreateNestedOneWithoutPostsInput } from "../inputs/PostCreateNestedOneWithoutPostsInput";
-import { UserCreateNestedOneWithoutPostsInput } from "../inputs/UserCreateNestedOneWithoutPostsInput";
+import { UserCreateNestedOneWithoutUser_postsInput } from "../inputs/UserCreateNestedOneWithoutUser_postsInput";
 
 @TypeGraphQL.InputType("PostCreateInput", {
   isAbstract: true
 })
 export class PostCreateInput {
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  postid?: string | undefined;
+
   @TypeGraphQL.Field(_type => Date, {
     nullable: true
   })
@@ -40,18 +43,8 @@ export class PostCreateInput {
   })
   content!: string;
 
-  @TypeGraphQL.Field(_type => UserCreateNestedOneWithoutPostsInput, {
-    nullable: true
+  @TypeGraphQL.Field(_type => UserCreateNestedOneWithoutUser_postsInput, {
+    nullable: false
   })
-  author?: UserCreateNestedOneWithoutPostsInput | undefined;
-
-  @TypeGraphQL.Field(_type => PostCreateNestedOneWithoutPostsInput, {
-    nullable: true
-  })
-  post?: PostCreateNestedOneWithoutPostsInput | undefined;
-
-  @TypeGraphQL.Field(_type => PostCreateNestedManyWithoutPostInput, {
-    nullable: true
-  })
-  posts?: PostCreateNestedManyWithoutPostInput | undefined;
+  author!: UserCreateNestedOneWithoutUser_postsInput;
 }

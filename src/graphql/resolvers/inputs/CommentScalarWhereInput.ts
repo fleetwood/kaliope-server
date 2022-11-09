@@ -4,7 +4,6 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { DateTimeNullableFilter } from "../inputs/DateTimeNullableFilter";
 import { StringFilter } from "../inputs/StringFilter";
-import { StringNullableFilter } from "../inputs/StringNullableFilter";
 
 @TypeGraphQL.InputType("CommentScalarWhereInput", {
   isAbstract: true
@@ -30,6 +29,11 @@ export class CommentScalarWhereInput {
   })
   commentid?: StringFilter | undefined;
 
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  authorid?: StringFilter | undefined;
+
   @TypeGraphQL.Field(_type => DateTimeNullableFilter, {
     nullable: true
   })
@@ -45,8 +49,8 @@ export class CommentScalarWhereInput {
   })
   content?: StringFilter | undefined;
 
-  @TypeGraphQL.Field(_type => StringNullableFilter, {
+  @TypeGraphQL.Field(_type => StringFilter, {
     nullable: true
   })
-  commentingid?: StringNullableFilter | undefined;
+  bookid?: StringFilter | undefined;
 }

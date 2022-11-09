@@ -15,6 +15,11 @@ export class BookCountAggregate {
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false
   })
+  authorid!: number;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
   cover!: number;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {

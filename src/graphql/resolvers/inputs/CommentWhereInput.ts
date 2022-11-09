@@ -2,13 +2,9 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { BookRatingRelationFilter } from "../inputs/BookRatingRelationFilter";
 import { BookRelationFilter } from "../inputs/BookRelationFilter";
-import { CommentListRelationFilter } from "../inputs/CommentListRelationFilter";
-import { CommentRelationFilter } from "../inputs/CommentRelationFilter";
 import { DateTimeNullableFilter } from "../inputs/DateTimeNullableFilter";
 import { StringFilter } from "../inputs/StringFilter";
-import { StringNullableFilter } from "../inputs/StringNullableFilter";
 import { UserRelationFilter } from "../inputs/UserRelationFilter";
 
 @TypeGraphQL.InputType("CommentWhereInput", {
@@ -38,7 +34,12 @@ export class CommentWhereInput {
   @TypeGraphQL.Field(_type => UserRelationFilter, {
     nullable: true
   })
-  user?: UserRelationFilter | undefined;
+  author?: UserRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  authorid?: StringFilter | undefined;
 
   @TypeGraphQL.Field(_type => DateTimeNullableFilter, {
     nullable: true
@@ -55,28 +56,13 @@ export class CommentWhereInput {
   })
   content?: StringFilter | undefined;
 
-  @TypeGraphQL.Field(_type => StringNullableFilter, {
-    nullable: true
-  })
-  commentingid?: StringNullableFilter | undefined;
-
-  @TypeGraphQL.Field(_type => CommentRelationFilter, {
-    nullable: true
-  })
-  commenton?: CommentRelationFilter | undefined;
-
-  @TypeGraphQL.Field(_type => CommentListRelationFilter, {
-    nullable: true
-  })
-  comments?: CommentListRelationFilter | undefined;
-
   @TypeGraphQL.Field(_type => BookRelationFilter, {
     nullable: true
   })
   book?: BookRelationFilter | undefined;
 
-  @TypeGraphQL.Field(_type => BookRatingRelationFilter, {
+  @TypeGraphQL.Field(_type => StringFilter, {
     nullable: true
   })
-  bookrating?: BookRatingRelationFilter | undefined;
+  bookid?: StringFilter | undefined;
 }

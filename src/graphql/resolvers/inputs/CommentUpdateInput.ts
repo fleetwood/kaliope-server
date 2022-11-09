@@ -2,22 +2,24 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { BookRatingUpdateOneWithoutCommentNestedInput } from "../inputs/BookRatingUpdateOneWithoutCommentNestedInput";
-import { BookUpdateOneRequiredWithoutCommentsNestedInput } from "../inputs/BookUpdateOneRequiredWithoutCommentsNestedInput";
-import { CommentUpdateManyWithoutCommentonNestedInput } from "../inputs/CommentUpdateManyWithoutCommentonNestedInput";
-import { CommentUpdateOneWithoutCommentsNestedInput } from "../inputs/CommentUpdateOneWithoutCommentsNestedInput";
+import { BookUpdateOneRequiredWithoutBook_commentsNestedInput } from "../inputs/BookUpdateOneRequiredWithoutBook_commentsNestedInput";
 import { NullableDateTimeFieldUpdateOperationsInput } from "../inputs/NullableDateTimeFieldUpdateOperationsInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
-import { UserUpdateOneRequiredWithoutCommentsNestedInput } from "../inputs/UserUpdateOneRequiredWithoutCommentsNestedInput";
+import { UserUpdateOneRequiredWithoutUser_commentsNestedInput } from "../inputs/UserUpdateOneRequiredWithoutUser_commentsNestedInput";
 
 @TypeGraphQL.InputType("CommentUpdateInput", {
   isAbstract: true
 })
 export class CommentUpdateInput {
-  @TypeGraphQL.Field(_type => UserUpdateOneRequiredWithoutCommentsNestedInput, {
+  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
     nullable: true
   })
-  user?: UserUpdateOneRequiredWithoutCommentsNestedInput | undefined;
+  commentid?: StringFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => UserUpdateOneRequiredWithoutUser_commentsNestedInput, {
+    nullable: true
+  })
+  author?: UserUpdateOneRequiredWithoutUser_commentsNestedInput | undefined;
 
   @TypeGraphQL.Field(_type => NullableDateTimeFieldUpdateOperationsInput, {
     nullable: true
@@ -34,23 +36,8 @@ export class CommentUpdateInput {
   })
   content?: StringFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(_type => CommentUpdateOneWithoutCommentsNestedInput, {
+  @TypeGraphQL.Field(_type => BookUpdateOneRequiredWithoutBook_commentsNestedInput, {
     nullable: true
   })
-  commenton?: CommentUpdateOneWithoutCommentsNestedInput | undefined;
-
-  @TypeGraphQL.Field(_type => CommentUpdateManyWithoutCommentonNestedInput, {
-    nullable: true
-  })
-  comments?: CommentUpdateManyWithoutCommentonNestedInput | undefined;
-
-  @TypeGraphQL.Field(_type => BookUpdateOneRequiredWithoutCommentsNestedInput, {
-    nullable: true
-  })
-  book?: BookUpdateOneRequiredWithoutCommentsNestedInput | undefined;
-
-  @TypeGraphQL.Field(_type => BookRatingUpdateOneWithoutCommentNestedInput, {
-    nullable: true
-  })
-  bookrating?: BookRatingUpdateOneWithoutCommentNestedInput | undefined;
+  book?: BookUpdateOneRequiredWithoutBook_commentsNestedInput | undefined;
 }

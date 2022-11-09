@@ -12,6 +12,16 @@ export class BookRatingCreateManyInput {
   })
   bookratingid?: string | undefined;
 
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  authorid!: string;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  bookid!: string;
+
   @TypeGraphQL.Field(_type => Date, {
     nullable: true
   })

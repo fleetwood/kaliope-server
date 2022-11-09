@@ -12,6 +12,11 @@ export class CommentMaxAggregate {
   })
   commentid!: string | null;
 
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  authorid!: string | null;
+
   @TypeGraphQL.Field(_type => Date, {
     nullable: true
   })
@@ -30,5 +35,5 @@ export class CommentMaxAggregate {
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
-  commentingid!: string | null;
+  bookid!: string | null;
 }

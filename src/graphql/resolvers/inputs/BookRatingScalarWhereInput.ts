@@ -29,6 +29,16 @@ export class BookRatingScalarWhereInput {
   })
   bookratingid?: StringFilter | undefined;
 
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  authorid?: StringFilter | undefined;
+
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  bookid?: StringFilter | undefined;
+
   @TypeGraphQL.Field(_type => DateTimeNullableFilter, {
     nullable: true
   })

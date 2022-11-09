@@ -2,7 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { CommentRelationFilter } from "../inputs/CommentRelationFilter";
+import { BookRelationFilter } from "../inputs/BookRelationFilter";
 import { DateTimeNullableFilter } from "../inputs/DateTimeNullableFilter";
 import { StringFilter } from "../inputs/StringFilter";
 import { UserRelationFilter } from "../inputs/UserRelationFilter";
@@ -34,7 +34,22 @@ export class BookRatingWhereInput {
   @TypeGraphQL.Field(_type => UserRelationFilter, {
     nullable: true
   })
-  user?: UserRelationFilter | undefined;
+  author?: UserRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  authorid?: StringFilter | undefined;
+
+  @TypeGraphQL.Field(_type => BookRelationFilter, {
+    nullable: true
+  })
+  book?: BookRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  bookid?: StringFilter | undefined;
 
   @TypeGraphQL.Field(_type => DateTimeNullableFilter, {
     nullable: true
@@ -45,9 +60,4 @@ export class BookRatingWhereInput {
     nullable: true
   })
   updated_at?: DateTimeNullableFilter | undefined;
-
-  @TypeGraphQL.Field(_type => CommentRelationFilter, {
-    nullable: true
-  })
-  comment?: CommentRelationFilter | undefined;
 }

@@ -2,9 +2,9 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { BookRatingUpdateManyWithoutUserNestedInput } from "../inputs/BookRatingUpdateManyWithoutUserNestedInput";
-import { BookUpdateManyWithoutUserNestedInput } from "../inputs/BookUpdateManyWithoutUserNestedInput";
-import { CommentUpdateManyWithoutUserNestedInput } from "../inputs/CommentUpdateManyWithoutUserNestedInput";
+import { BookRatingUpdateManyWithoutAuthorNestedInput } from "../inputs/BookRatingUpdateManyWithoutAuthorNestedInput";
+import { BookUpdateManyWithoutAuthorNestedInput } from "../inputs/BookUpdateManyWithoutAuthorNestedInput";
+import { CommentUpdateManyWithoutAuthorNestedInput } from "../inputs/CommentUpdateManyWithoutAuthorNestedInput";
 import { NullableBoolFieldUpdateOperationsInput } from "../inputs/NullableBoolFieldUpdateOperationsInput";
 import { NullableDateTimeFieldUpdateOperationsInput } from "../inputs/NullableDateTimeFieldUpdateOperationsInput";
 import { NullableStringFieldUpdateOperationsInput } from "../inputs/NullableStringFieldUpdateOperationsInput";
@@ -73,20 +73,20 @@ export class UserUpdateInput {
   @TypeGraphQL.Field(_type => PostUpdateManyWithoutAuthorNestedInput, {
     nullable: true
   })
-  posts?: PostUpdateManyWithoutAuthorNestedInput | undefined;
+  user_posts?: PostUpdateManyWithoutAuthorNestedInput | undefined;
 
-  @TypeGraphQL.Field(_type => BookUpdateManyWithoutUserNestedInput, {
+  @TypeGraphQL.Field(_type => CommentUpdateManyWithoutAuthorNestedInput, {
     nullable: true
   })
-  books?: BookUpdateManyWithoutUserNestedInput | undefined;
+  user_comments?: CommentUpdateManyWithoutAuthorNestedInput | undefined;
 
-  @TypeGraphQL.Field(_type => CommentUpdateManyWithoutUserNestedInput, {
+  @TypeGraphQL.Field(_type => BookUpdateManyWithoutAuthorNestedInput, {
     nullable: true
   })
-  comments?: CommentUpdateManyWithoutUserNestedInput | undefined;
+  user_books?: BookUpdateManyWithoutAuthorNestedInput | undefined;
 
-  @TypeGraphQL.Field(_type => BookRatingUpdateManyWithoutUserNestedInput, {
+  @TypeGraphQL.Field(_type => BookRatingUpdateManyWithoutAuthorNestedInput, {
     nullable: true
   })
-  bookratings?: BookRatingUpdateManyWithoutUserNestedInput | undefined;
+  user_ratings?: BookRatingUpdateManyWithoutAuthorNestedInput | undefined;
 }

@@ -2,9 +2,9 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { BookCreateNestedManyWithoutUserInput } from "../inputs/BookCreateNestedManyWithoutUserInput";
-import { BookRatingCreateNestedManyWithoutUserInput } from "../inputs/BookRatingCreateNestedManyWithoutUserInput";
-import { CommentCreateNestedManyWithoutUserInput } from "../inputs/CommentCreateNestedManyWithoutUserInput";
+import { BookCreateNestedManyWithoutAuthorInput } from "../inputs/BookCreateNestedManyWithoutAuthorInput";
+import { BookRatingCreateNestedManyWithoutAuthorInput } from "../inputs/BookRatingCreateNestedManyWithoutAuthorInput";
+import { CommentCreateNestedManyWithoutAuthorInput } from "../inputs/CommentCreateNestedManyWithoutAuthorInput";
 import { PostCreateNestedManyWithoutAuthorInput } from "../inputs/PostCreateNestedManyWithoutAuthorInput";
 
 @TypeGraphQL.InputType("UserCreateInput", {
@@ -69,20 +69,20 @@ export class UserCreateInput {
   @TypeGraphQL.Field(_type => PostCreateNestedManyWithoutAuthorInput, {
     nullable: true
   })
-  posts?: PostCreateNestedManyWithoutAuthorInput | undefined;
+  user_posts?: PostCreateNestedManyWithoutAuthorInput | undefined;
 
-  @TypeGraphQL.Field(_type => BookCreateNestedManyWithoutUserInput, {
+  @TypeGraphQL.Field(_type => CommentCreateNestedManyWithoutAuthorInput, {
     nullable: true
   })
-  books?: BookCreateNestedManyWithoutUserInput | undefined;
+  user_comments?: CommentCreateNestedManyWithoutAuthorInput | undefined;
 
-  @TypeGraphQL.Field(_type => CommentCreateNestedManyWithoutUserInput, {
+  @TypeGraphQL.Field(_type => BookCreateNestedManyWithoutAuthorInput, {
     nullable: true
   })
-  comments?: CommentCreateNestedManyWithoutUserInput | undefined;
+  user_books?: BookCreateNestedManyWithoutAuthorInput | undefined;
 
-  @TypeGraphQL.Field(_type => BookRatingCreateNestedManyWithoutUserInput, {
+  @TypeGraphQL.Field(_type => BookRatingCreateNestedManyWithoutAuthorInput, {
     nullable: true
   })
-  bookratings?: BookRatingCreateNestedManyWithoutUserInput | undefined;
+  user_ratings?: BookRatingCreateNestedManyWithoutAuthorInput | undefined;
 }

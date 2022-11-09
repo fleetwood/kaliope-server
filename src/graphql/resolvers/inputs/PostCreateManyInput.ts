@@ -43,7 +43,7 @@ export class PostCreateManyInput {
   content!: string;
 
   @TypeGraphQL.Field(_type => String, {
-    nullable: true
+    nullable: false
   })
-  replytoid?: string | undefined;
+  authorId!: string;
 }

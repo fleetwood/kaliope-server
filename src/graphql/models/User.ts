@@ -67,13 +67,13 @@ export class User {
   })
   photo_url?: string | null;
 
-  posts?: Post[];
+  user_posts?: Post[];
 
-  books?: Book[];
+  user_comments?: Comment[];
 
-  comments?: Comment[];
+  user_books?: Book[];
 
-  bookratings?: BookRating[];
+  user_ratings?: BookRating[];
 
   @TypeGraphQL.Field(_type => UserCount, {
     nullable: true

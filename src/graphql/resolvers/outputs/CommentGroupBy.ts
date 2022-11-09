@@ -15,6 +15,11 @@ export class CommentGroupBy {
   })
   commentid!: string;
 
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  authorid!: string;
+
   @TypeGraphQL.Field(_type => Date, {
     nullable: true
   })
@@ -31,9 +36,9 @@ export class CommentGroupBy {
   content!: string;
 
   @TypeGraphQL.Field(_type => String, {
-    nullable: true
+    nullable: false
   })
-  commentingid!: string | null;
+  bookid!: string;
 
   @TypeGraphQL.Field(_type => CommentCountAggregate, {
     nullable: true

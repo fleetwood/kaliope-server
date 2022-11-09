@@ -46,5 +46,5 @@ export class PostMaxOrderByAggregateInput {
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
-  replytoid?: "asc" | "desc" | undefined;
+  authorId?: "asc" | "desc" | undefined;
 }

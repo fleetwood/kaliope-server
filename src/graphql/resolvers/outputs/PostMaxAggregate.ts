@@ -45,5 +45,5 @@ export class PostMaxAggregate {
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
-  replytoid!: string | null;
+  authorId!: string | null;
 }

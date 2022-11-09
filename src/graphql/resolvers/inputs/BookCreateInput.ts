@@ -2,17 +2,23 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { BookRatingCreateNestedManyWithoutBookInput } from "../inputs/BookRatingCreateNestedManyWithoutBookInput";
 import { CommentCreateNestedManyWithoutBookInput } from "../inputs/CommentCreateNestedManyWithoutBookInput";
-import { UserCreateNestedOneWithoutBooksInput } from "../inputs/UserCreateNestedOneWithoutBooksInput";
+import { UserCreateNestedOneWithoutUser_booksInput } from "../inputs/UserCreateNestedOneWithoutUser_booksInput";
 
 @TypeGraphQL.InputType("BookCreateInput", {
   isAbstract: true
 })
 export class BookCreateInput {
-  @TypeGraphQL.Field(_type => UserCreateNestedOneWithoutBooksInput, {
+  @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
-  user?: UserCreateNestedOneWithoutBooksInput | undefined;
+  bookid?: string | undefined;
+
+  @TypeGraphQL.Field(_type => UserCreateNestedOneWithoutUser_booksInput, {
+    nullable: false
+  })
+  author!: UserCreateNestedOneWithoutUser_booksInput;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: true
@@ -42,5 +48,10 @@ export class BookCreateInput {
   @TypeGraphQL.Field(_type => CommentCreateNestedManyWithoutBookInput, {
     nullable: true
   })
-  comments?: CommentCreateNestedManyWithoutBookInput | undefined;
+  book_comments?: CommentCreateNestedManyWithoutBookInput | undefined;
+
+  @TypeGraphQL.Field(_type => BookRatingCreateNestedManyWithoutBookInput, {
+    nullable: true
+  })
+  book_ratings?: BookRatingCreateNestedManyWithoutBookInput | undefined;
 }

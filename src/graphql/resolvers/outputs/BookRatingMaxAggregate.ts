@@ -12,6 +12,16 @@ export class BookRatingMaxAggregate {
   })
   bookratingid!: string | null;
 
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  authorid!: string | null;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  bookid!: string | null;
+
   @TypeGraphQL.Field(_type => Date, {
     nullable: true
   })

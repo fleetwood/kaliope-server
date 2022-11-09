@@ -2,6 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { BookRatingOrderByRelationAggregateInput } from "../inputs/BookRatingOrderByRelationAggregateInput";
 import { CommentOrderByRelationAggregateInput } from "../inputs/CommentOrderByRelationAggregateInput";
 import { UserOrderByWithRelationInput } from "../inputs/UserOrderByWithRelationInput";
 import { SortOrder } from "../../enums/SortOrder";
@@ -18,7 +19,12 @@ export class BookOrderByWithRelationInput {
   @TypeGraphQL.Field(_type => UserOrderByWithRelationInput, {
     nullable: true
   })
-  user?: UserOrderByWithRelationInput | undefined;
+  author?: UserOrderByWithRelationInput | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  authorid?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
@@ -48,5 +54,10 @@ export class BookOrderByWithRelationInput {
   @TypeGraphQL.Field(_type => CommentOrderByRelationAggregateInput, {
     nullable: true
   })
-  comments?: CommentOrderByRelationAggregateInput | undefined;
+  book_comments?: CommentOrderByRelationAggregateInput | undefined;
+
+  @TypeGraphQL.Field(_type => BookRatingOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  book_ratings?: BookRatingOrderByRelationAggregateInput | undefined;
 }

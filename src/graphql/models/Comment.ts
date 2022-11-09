@@ -3,9 +3,7 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
 import { Book } from "../models/Book";
-import { BookRating } from "../models/BookRating";
 import { User } from "../models/User";
-import { CommentCount } from "../resolvers/outputs/CommentCount";
 
 @TypeGraphQL.ObjectType("Comment", {
   isAbstract: true
@@ -16,7 +14,12 @@ export class Comment {
   })
   commentid!: string;
 
-  user?: User;
+  author?: User;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  authorid!: string;
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: true
@@ -33,21 +36,10 @@ export class Comment {
   })
   content!: string;
 
-  @TypeGraphQL.Field(_type => String, {
-    nullable: true
-  })
-  commentingid?: string | null;
-
-  commenton?: Comment | null;
-
-  comments?: Comment[];
-
   book?: Book;
 
-  bookrating?: BookRating | null;
-
-  @TypeGraphQL.Field(_type => CommentCount, {
-    nullable: true
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
   })
-  _count?: CommentCount | null;
+  bookid!: string;
 }
