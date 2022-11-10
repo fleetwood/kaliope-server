@@ -18,12 +18,6 @@ import { User } from "../../../models/User";
 import { AffectedRowsOutput } from "../../outputs/AffectedRowsOutput";
 import { AggregateUser } from "../../outputs/AggregateUser";
 import { UserGroupBy } from "../../outputs/UserGroupBy";
-import { hash } from "argon2";
-import { log } from "console";
-import { FirebaseError } from "firebase/app";
-import { FirebaseErrors, firebaseUserCreate, firebaseError, firebaseGoogleLogin, firebaseUserLogin } from "./../../../../firebase/FirebaseAuthContext";
-import { todo } from "./../../../../helpers";
-import { ArgsType, ObjectType } from "type-graphql";
 
 @TypeGraphQL.Resolver(_of => User)
 export class UserCrudResolver {
@@ -96,7 +90,6 @@ export class UserCrudResolver {
     const { _count } = transformFields(
       graphqlFields(info as any)
     );
-    log('findFirstUser',args)
     return getPrismaFromContext(ctx).user.findFirst({
       ...args,
       ...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
@@ -123,7 +116,6 @@ export class UserCrudResolver {
     const { _count } = transformFields(
       graphqlFields(info as any)
     );
-    log('user (findUnique)',args)
     return getPrismaFromContext(ctx).user.findUnique({
       ...args,
       ...(_count && transformCountFieldIntoSelectRelationsCount(_count)),

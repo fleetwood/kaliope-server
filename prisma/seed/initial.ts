@@ -1,8 +1,8 @@
 import { PrismaClient } from "@prisma/client";
 import { hash } from "argon2";
 import console from "console";
-import { create } from "domain";
-import { UUIDMock } from "graphql-scalars";
+import { faker } from '@faker-js/faker';
+
 
 const prisma = new PrismaClient();
 
@@ -32,22 +32,23 @@ function rand(min: number = 0, max: number = 1) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-const mockPosts = (total: number = 1): { data: mockPost[] } => {
-  const posts: mockPost[] = [];
+const sentences = (total: number = 1) => lorem.generateSentences(total);
+const par = (total?: number) => lorem.generateParagraphs(total || rand(3));
+const subtitleMaybe = ():string|null => (rand() > 0 ? sentences(1) : null);
+
+const mockPosts = (total: number = 1): {title:string, subtitle?:string|null, content:string}[] => {
+  const posts:{title:string, subtitle?:string|null, content:string}[] = [];
+  total = rand(1,total);
   for (let i = 1; i <= total; i++) {
     let r = rand(2);
     posts.push({
-      title: lorem.generateSentences(1),
-      subtitle: r > 0 ? lorem.generateSentences(r) : null,
-      content: lorem.generateParagraphs(1),
+      title: sentences(),
+      subtitle: subtitleMaybe(),
+      content: lorem.generateParagraphs(rand(1,3)),
     });
   }
-  return { data: posts };
+  return posts;
 };
-
-const sentences = (total: number = 1) => lorem.generateSentences(total);
-const par = (total?: number) => lorem.generateParagraphs(total || rand(3));
-const subtitleMaybe = () => (rand() > 0 ? sentences(1) : null);
 
 const password = async () => hash("testing");
 
@@ -70,30 +71,7 @@ async function main() {
       photo_url: "https://xsgames.co/randomusers/assets/avatars/female/68.jpg",
       created_at: now(),
       updated_at: now(),
-      user_posts: {
-        create: [
-          {
-            title: sentences(),
-            subtitle: subtitleMaybe(),
-            content: par()
-          },
-          {
-            title: sentences(),
-            subtitle: subtitleMaybe(),
-            content: par()
-          },
-          {
-            title: sentences(),
-            subtitle: subtitleMaybe(),
-            content: par()
-          },
-          {
-            title: sentences(),
-            subtitle: subtitleMaybe(),
-            content: par()
-          },
-        ]
-      }
+      user_posts: { create: mockPosts(51) }
     },
   });
   await confirm(tamiko);
@@ -108,13 +86,7 @@ async function main() {
       photo_url: "https://xsgames.co/randomusers/assets/avatars/female/62.jpg",
       created_at: now(),
       updated_at: now(),
-      user_posts: {
-        create: {
-          title: sentences(),
-          subtitle: subtitleMaybe(),
-          content: par(),
-        },
-      },
+      user_posts: { create: mockPosts(105) }
     },
   });
   await confirm(delinda);
@@ -129,13 +101,7 @@ async function main() {
       photo_url: "https://xsgames.co/randomusers/assets/avatars/female/81.jpg",
       created_at: now(),
       updated_at: now(),
-      user_posts: {
-        create: {
-          title: sentences(),
-          subtitle: subtitleMaybe(),
-          content: par(),
-        },
-      },
+      user_posts: { create: mockPosts(45) }
     },
   });
   await confirm(julian);
@@ -150,40 +116,7 @@ async function main() {
       photo_url: "https://xsgames.co/randomusers/assets/avatars/female/36.jpg",
       created_at: now(),
       updated_at: now(),
-      user_posts: {
-        create: [
-        {
-          title: sentences(),
-          subtitle: subtitleMaybe(),
-          content: par(),
-        },
-        {
-          title: sentences(),
-          subtitle: subtitleMaybe(),
-          content: par(),
-        },
-        {
-          title: sentences(),
-          subtitle: subtitleMaybe(),
-          content: par(),
-        },
-        {
-          title: sentences(),
-          subtitle: subtitleMaybe(),
-          content: par(),
-        },
-        {
-          title: sentences(),
-          subtitle: subtitleMaybe(),
-          content: par(),
-        },
-        {
-          title: sentences(),
-          subtitle: subtitleMaybe(),
-          content: par(),
-        },
-      ]
-      },
+      user_posts: { create: mockPosts(5000) }
     },
   });
   await confirm(kitty);
@@ -198,16 +131,25 @@ async function main() {
       photo_url: "https://xsgames.co/randomusers/assets/avatars/female/55.jpg",
       created_at: now(),
       updated_at: now(),
-      user_posts: {
-        create: {
-          title: sentences(),
-          subtitle: subtitleMaybe(),
-          content: par(),
-        },
-      },
+      user_posts: { create: mockPosts(50) }
     },
   });
   await confirm(kary)
+
+  const elvis = await prisma.user.create({
+    data: {
+      username: "Elvis",
+      email: "elvis.walsh@ethereal.email",
+      password: 'BjDTQE9HNSbhE7kJmY',
+      uid: "ElvisWalshElvisWalsh",
+      display_name: "Elvis Walsh",
+      photo_url: faker.image.avatar(),
+      created_at: now(),
+      updated_at: now(),
+      user_posts: { create: mockPosts(50) }
+    },
+  });
+  await confirm(elvis)
 
   const wei = await prisma.user.create({
     data: {
@@ -219,13 +161,7 @@ async function main() {
       photo_url: "https://xsgames.co/randomusers/assets/avatars/female/12.jpg",
       created_at: now(),
       updated_at: now(),
-      user_posts: {
-        create: {
-          title: sentences(),
-          subtitle: subtitleMaybe(),
-          content: par(),
-        },
-      },
+      user_posts: { create: mockPosts(5) }
     },
   });
   await confirm(wei)
@@ -240,13 +176,7 @@ async function main() {
       photo_url: "https://xsgames.co/randomusers/assets/avatars/female/23.jpg",
       created_at: now(),
       updated_at: now(),
-      user_posts: {
-        create: {
-          title: sentences(),
-          subtitle: subtitleMaybe(),
-          content: par(),
-        },
-      },
+      user_posts: { create: mockPosts(5) }
     },
   });
   await confirm(marisha)
@@ -261,29 +191,7 @@ async function main() {
       photo_url: "https://xsgames.co/randomusers/assets/avatars/female/98.jpg",
       created_at: now(),
       updated_at: now(),
-      user_posts: {
-        create: [
-          {
-            title: sentences(),
-            subtitle: subtitleMaybe(),
-            content: par(),
-          },
-          {
-            title: 'gyeote meomulleojullae',
-            subtitle: 'naege yaksokhaejullae',
-            content: 'son daemyeon naragalkka buseojilkka geobna geobna geobna'
-          },
-          {
-            title: sentences(),
-            subtitle: subtitleMaybe(),
-            content: par(),
-          },
-          {
-            title: 'gyeote meomulleojullae',
-            subtitle: 'naege yaksokhaejullae',
-            content: 'son daemyeon naragalkka buseojilkka geobna geobna geobna'
-          }
-      ]},
+      user_posts: { create: mockPosts(5) }
     },
   });
   await confirm(nydia)
