@@ -7,10 +7,11 @@ import { FirebaseError } from "firebase/app";
 import { hash } from "argon2";
 import { log } from "console";
 import { todo } from "../../../helpers";
-import { FirebaseErrors, firebaseUserCreate, firebaseError, firebaseGoogleLogin, firebaseUserLogin } from "../../../firebase/FirebaseAuthContext";
+import { FirebaseErrors, firebaseUserCreate, firebaseError, firebaseGoogleLogin, firebaseUserLogin, firebaseAuth } from "../../../firebase/FirebaseAuthContext";
 import { User } from "../../models/User";
 import { getPrismaFromContext, transformCountFieldIntoSelectRelationsCount, transformFields } from "../../helpers";
 import { ObjectType } from "type-graphql";
+import { getAuth } from "firebase/auth";
 
 @ObjectType()
 class FirebaseUserResponse {
@@ -36,6 +37,20 @@ export class FirebaseAuthInput {
     nullable: true
   })
   password: string;
+}
+
+@TypeGraphQL.InputType("FirebaseGoogleAuthInput", { isAbstract: true})
+export class FirebaseGoogleAuthInput {
+  @TypeGraphQL.Field(_type => String)
+  token: string
+}
+
+@TypeGraphQL.ArgsType()
+export class FirebaseGoogleAuthArgs {
+  @TypeGraphQL.Field(_type => FirebaseGoogleAuthInput, {
+    nullable: false
+  })
+  data!: FirebaseGoogleAuthInput
 }
 
 @TypeGraphQL.ArgsType()
@@ -93,26 +108,29 @@ export class FirebaseUserResolver {
   })
   async firebaseGoogleAuth(
     @TypeGraphQL.Ctx() ctx: any,
-    @TypeGraphQL.Info() info: GraphQLResolveInfo
+    @TypeGraphQL.Info() info: GraphQLResolveInfo,
+    @TypeGraphQL.Args() args: FirebaseGoogleAuthArgs
   ): Promise<User> {
     const { _count } = transformFields(graphqlFields(info as any));
 
-    let error = FirebaseErrors.registerSubmit;
-    log('firebaseGoogleAuth')
+    let error = FirebaseErrors.loginGoogle;
     try {
-      const firebaseUser = await firebaseGoogleLogin()
-      todo('Convert user to Prisma User')
+      log('GOOGLE AUTH : TOKEN',args.data)
+      const {token} = args.data;
+      
+      const firebaseUser = await firebaseGoogleLogin(token)
       if (firebaseUser) {
-        log('authorized user!')
+        log('\t>>> AUTHORIZED!!!')
+        todo('\tConvert user to Prisma User')
         return getPrismaFromContext(ctx).user.upsert({
           ...firebaseUser,
           ...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
         });
       }
-      log('Failed googleAuth....')
+      log('\tFailed googleAuth....')
       throw(error)
     } catch (e) {
-      log('GOOGLE AUTH FAIL',e)
+      log('GOOGLE AUTH FAIL',JSON.stringify(e,null,2))
       throw(firebaseError(e, error));
     }
   }

@@ -3,7 +3,8 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-  signInWithPopup,
+  // signInWithPopup,
+  signInWithCustomToken,
   GoogleAuthProvider,
   Auth,
   getAuth,
@@ -18,8 +19,6 @@ const firebaseConfig = {
   messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGE_SENDER_ID,
   appId: process.env.REACT_APP_FIREBASE_APP_ID,
 };
-
-console.log("FIREBASE:::", firebaseConfig);
 
 export const firebaseApp: FirebaseApp = initializeApp(firebaseConfig);
 export const firebaseAuth: Auth = getAuth(firebaseApp);
@@ -38,8 +37,9 @@ export const firebaseUserLogin = (args: {
 }) => {
   return signInWithEmailAndPassword(firebaseAuth, args.email!, args.password!);
 };
-export const firebaseGoogleLogin = async () =>
-  signInWithPopup(firebaseAuth, googleAuth);
+export const firebaseGoogleLogin = async (token:string) =>
+signInWithCustomToken(firebaseAuth, token)
+// signInWithPopup(firebaseAuth, googleAuth);
 export const firebaseLogout = () => signOut(firebaseAuth);
 
 export type IFirebaseErrorCode = {
@@ -64,6 +64,10 @@ export const FirebaseErrors: IFirebaseErrorCodes = {
   loginSubmit: {
     code: "auth/login-submit-handler",
     message: "Login hook exception",
+  },
+  loginGoogle: {
+    code: "auth/login-google-handler",
+    message: "Google authentication failed",
   },
   registerSubmit: {
     code: "auth/register-submit-handler",
