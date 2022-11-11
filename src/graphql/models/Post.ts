@@ -43,10 +43,10 @@ export class Post {
   })
   content!: string;
 
-  author?: User;
-
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
   authorId!: string;
+
+  author?: User;
 }

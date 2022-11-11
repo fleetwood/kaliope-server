@@ -10,10 +10,10 @@ export class BookCount {
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false
   })
-  book_comments!: number;
+  book_ratings!: number;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false
   })
-  book_ratings!: number;
+  book_comments!: number;
 }

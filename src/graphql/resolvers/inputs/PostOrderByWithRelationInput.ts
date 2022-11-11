@@ -44,13 +44,13 @@ export class PostOrderByWithRelationInput {
   })
   content?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field(_type => UserOrderByWithRelationInput, {
-    nullable: true
-  })
-  author?: UserOrderByWithRelationInput | undefined;
-
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
   authorId?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => UserOrderByWithRelationInput, {
+    nullable: true
+  })
+  author?: UserOrderByWithRelationInput | undefined;
 }

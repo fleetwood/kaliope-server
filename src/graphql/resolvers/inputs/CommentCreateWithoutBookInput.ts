@@ -13,11 +13,6 @@ export class CommentCreateWithoutBookInput {
   })
   commentid?: string | undefined;
 
-  @TypeGraphQL.Field(_type => UserCreateNestedOneWithoutCommentsInput, {
-    nullable: false
-  })
-  author!: UserCreateNestedOneWithoutCommentsInput;
-
   @TypeGraphQL.Field(_type => Date, {
     nullable: true
   })
@@ -32,4 +27,9 @@ export class CommentCreateWithoutBookInput {
     nullable: false
   })
   content!: string;
+
+  @TypeGraphQL.Field(_type => UserCreateNestedOneWithoutCommentsInput, {
+    nullable: false
+  })
+  author!: UserCreateNestedOneWithoutCommentsInput;
 }

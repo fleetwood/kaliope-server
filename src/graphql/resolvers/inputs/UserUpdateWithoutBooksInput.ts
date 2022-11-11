@@ -54,18 +54,18 @@ export class UserUpdateWithoutBooksInput {
   })
   lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(_type => PostUpdateManyWithoutAuthorNestedInput, {
+  @TypeGraphQL.Field(_type => BookRatingUpdateManyWithoutAuthorNestedInput, {
     nullable: true
   })
-  posts?: PostUpdateManyWithoutAuthorNestedInput | undefined;
+  ratings?: BookRatingUpdateManyWithoutAuthorNestedInput | undefined;
 
   @TypeGraphQL.Field(_type => CommentUpdateManyWithoutAuthorNestedInput, {
     nullable: true
   })
   comments?: CommentUpdateManyWithoutAuthorNestedInput | undefined;
 
-  @TypeGraphQL.Field(_type => BookRatingUpdateManyWithoutAuthorNestedInput, {
+  @TypeGraphQL.Field(_type => PostUpdateManyWithoutAuthorNestedInput, {
     nullable: true
   })
-  ratings?: BookRatingUpdateManyWithoutAuthorNestedInput | undefined;
+  posts?: PostUpdateManyWithoutAuthorNestedInput | undefined;
 }

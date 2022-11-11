@@ -13,11 +13,6 @@ export class BookRatingCreateWithoutBookInput {
   })
   bookratingid?: string | undefined;
 
-  @TypeGraphQL.Field(_type => UserCreateNestedOneWithoutRatingsInput, {
-    nullable: false
-  })
-  author!: UserCreateNestedOneWithoutRatingsInput;
-
   @TypeGraphQL.Field(_type => Date, {
     nullable: true
   })
@@ -27,4 +22,9 @@ export class BookRatingCreateWithoutBookInput {
     nullable: true
   })
   updated_at?: Date | undefined;
+
+  @TypeGraphQL.Field(_type => UserCreateNestedOneWithoutRatingsInput, {
+    nullable: false
+  })
+  author!: UserCreateNestedOneWithoutRatingsInput;
 }

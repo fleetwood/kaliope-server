@@ -15,11 +15,6 @@ export class CommentOrderByWithRelationInput {
   })
   commentid?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field(_type => UserOrderByWithRelationInput, {
-    nullable: true
-  })
-  author?: UserOrderByWithRelationInput | undefined;
-
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
@@ -40,13 +35,18 @@ export class CommentOrderByWithRelationInput {
   })
   content?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field(_type => BookOrderByWithRelationInput, {
-    nullable: true
-  })
-  book?: BookOrderByWithRelationInput | undefined;
-
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
   bookid?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => UserOrderByWithRelationInput, {
+    nullable: true
+  })
+  author?: UserOrderByWithRelationInput | undefined;
+
+  @TypeGraphQL.Field(_type => BookOrderByWithRelationInput, {
+    nullable: true
+  })
+  book?: BookOrderByWithRelationInput | undefined;
 }

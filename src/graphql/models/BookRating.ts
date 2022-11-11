@@ -14,14 +14,10 @@ export class BookRating {
   })
   bookratingid!: string;
 
-  author?: User;
-
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
   authorid!: string;
-
-  book?: Book;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: false
@@ -37,4 +33,8 @@ export class BookRating {
     nullable: true
   })
   updated_at?: Date | null;
+
+  author?: User;
+
+  book?: Book;
 }

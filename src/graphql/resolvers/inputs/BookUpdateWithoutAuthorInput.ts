@@ -42,13 +42,13 @@ export class BookUpdateWithoutAuthorInput {
   })
   description?: StringFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(_type => CommentUpdateManyWithoutBookNestedInput, {
-    nullable: true
-  })
-  book_comments?: CommentUpdateManyWithoutBookNestedInput | undefined;
-
   @TypeGraphQL.Field(_type => BookRatingUpdateManyWithoutBookNestedInput, {
     nullable: true
   })
   book_ratings?: BookRatingUpdateManyWithoutBookNestedInput | undefined;
+
+  @TypeGraphQL.Field(_type => CommentUpdateManyWithoutBookNestedInput, {
+    nullable: true
+  })
+  book_comments?: CommentUpdateManyWithoutBookNestedInput | undefined;
 }

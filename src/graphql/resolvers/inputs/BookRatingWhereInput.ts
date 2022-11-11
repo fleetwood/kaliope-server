@@ -31,20 +31,10 @@ export class BookRatingWhereInput {
   })
   bookratingid?: StringFilter | undefined;
 
-  @TypeGraphQL.Field(_type => UserRelationFilter, {
-    nullable: true
-  })
-  author?: UserRelationFilter | undefined;
-
   @TypeGraphQL.Field(_type => StringFilter, {
     nullable: true
   })
   authorid?: StringFilter | undefined;
-
-  @TypeGraphQL.Field(_type => BookRelationFilter, {
-    nullable: true
-  })
-  book?: BookRelationFilter | undefined;
 
   @TypeGraphQL.Field(_type => StringFilter, {
     nullable: true
@@ -60,4 +50,14 @@ export class BookRatingWhereInput {
     nullable: true
   })
   updated_at?: DateTimeNullableFilter | undefined;
+
+  @TypeGraphQL.Field(_type => UserRelationFilter, {
+    nullable: true
+  })
+  author?: UserRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => BookRelationFilter, {
+    nullable: true
+  })
+  book?: BookRelationFilter | undefined;
 }

@@ -16,8 +16,6 @@ export class Book {
   })
   bookid!: string;
 
-  author?: User;
-
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
@@ -48,9 +46,11 @@ export class Book {
   })
   description!: string;
 
-  book_comments?: Comment[];
+  author?: User;
 
   book_ratings?: BookRating[];
+
+  book_comments?: Comment[];
 
   @TypeGraphQL.Field(_type => BookCount, {
     nullable: true

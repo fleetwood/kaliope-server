@@ -16,11 +16,6 @@ export class BookOrderByWithRelationInput {
   })
   bookid?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field(_type => UserOrderByWithRelationInput, {
-    nullable: true
-  })
-  author?: UserOrderByWithRelationInput | undefined;
-
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
@@ -51,13 +46,18 @@ export class BookOrderByWithRelationInput {
   })
   description?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field(_type => CommentOrderByRelationAggregateInput, {
+  @TypeGraphQL.Field(_type => UserOrderByWithRelationInput, {
     nullable: true
   })
-  book_comments?: CommentOrderByRelationAggregateInput | undefined;
+  author?: UserOrderByWithRelationInput | undefined;
 
   @TypeGraphQL.Field(_type => BookRatingOrderByRelationAggregateInput, {
     nullable: true
   })
   book_ratings?: BookRatingOrderByRelationAggregateInput | undefined;
+
+  @TypeGraphQL.Field(_type => CommentOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  book_comments?: CommentOrderByRelationAggregateInput | undefined;
 }

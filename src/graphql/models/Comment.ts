@@ -14,8 +14,6 @@ export class Comment {
   })
   commentid!: string;
 
-  author?: User;
-
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
@@ -36,10 +34,12 @@ export class Comment {
   })
   content!: string;
 
-  book?: Book;
-
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
   bookid!: string;
+
+  author?: User;
+
+  book?: Book;
 }

@@ -16,11 +16,6 @@ export class CommentUpdateInput {
   })
   commentid?: StringFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(_type => UserUpdateOneRequiredWithoutCommentsNestedInput, {
-    nullable: true
-  })
-  author?: UserUpdateOneRequiredWithoutCommentsNestedInput | undefined;
-
   @TypeGraphQL.Field(_type => NullableDateTimeFieldUpdateOperationsInput, {
     nullable: true
   })
@@ -35,6 +30,11 @@ export class CommentUpdateInput {
     nullable: true
   })
   content?: StringFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => UserUpdateOneRequiredWithoutCommentsNestedInput, {
+    nullable: true
+  })
+  author?: UserUpdateOneRequiredWithoutCommentsNestedInput | undefined;
 
   @TypeGraphQL.Field(_type => BookUpdateOneRequiredWithoutBook_commentsNestedInput, {
     nullable: true

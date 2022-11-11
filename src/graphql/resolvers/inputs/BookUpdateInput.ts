@@ -18,11 +18,6 @@ export class BookUpdateInput {
   })
   bookid?: StringFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(_type => UserUpdateOneRequiredWithoutBooksNestedInput, {
-    nullable: true
-  })
-  author?: UserUpdateOneRequiredWithoutBooksNestedInput | undefined;
-
   @TypeGraphQL.Field(_type => NullableStringFieldUpdateOperationsInput, {
     nullable: true
   })
@@ -48,13 +43,18 @@ export class BookUpdateInput {
   })
   description?: StringFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(_type => CommentUpdateManyWithoutBookNestedInput, {
+  @TypeGraphQL.Field(_type => UserUpdateOneRequiredWithoutBooksNestedInput, {
     nullable: true
   })
-  book_comments?: CommentUpdateManyWithoutBookNestedInput | undefined;
+  author?: UserUpdateOneRequiredWithoutBooksNestedInput | undefined;
 
   @TypeGraphQL.Field(_type => BookRatingUpdateManyWithoutBookNestedInput, {
     nullable: true
   })
   book_ratings?: BookRatingUpdateManyWithoutBookNestedInput | undefined;
+
+  @TypeGraphQL.Field(_type => CommentUpdateManyWithoutBookNestedInput, {
+    nullable: true
+  })
+  book_comments?: CommentUpdateManyWithoutBookNestedInput | undefined;
 }

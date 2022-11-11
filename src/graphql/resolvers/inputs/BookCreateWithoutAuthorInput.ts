@@ -39,13 +39,13 @@ export class BookCreateWithoutAuthorInput {
   })
   description!: string;
 
-  @TypeGraphQL.Field(_type => CommentCreateNestedManyWithoutBookInput, {
-    nullable: true
-  })
-  book_comments?: CommentCreateNestedManyWithoutBookInput | undefined;
-
   @TypeGraphQL.Field(_type => BookRatingCreateNestedManyWithoutBookInput, {
     nullable: true
   })
   book_ratings?: BookRatingCreateNestedManyWithoutBookInput | undefined;
+
+  @TypeGraphQL.Field(_type => CommentCreateNestedManyWithoutBookInput, {
+    nullable: true
+  })
+  book_comments?: CommentCreateNestedManyWithoutBookInput | undefined;
 }

@@ -16,16 +16,6 @@ export class BookRatingUpdateInput {
   })
   bookratingid?: StringFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(_type => UserUpdateOneRequiredWithoutRatingsNestedInput, {
-    nullable: true
-  })
-  author?: UserUpdateOneRequiredWithoutRatingsNestedInput | undefined;
-
-  @TypeGraphQL.Field(_type => BookUpdateOneRequiredWithoutBook_ratingsNestedInput, {
-    nullable: true
-  })
-  book?: BookUpdateOneRequiredWithoutBook_ratingsNestedInput | undefined;
-
   @TypeGraphQL.Field(_type => NullableDateTimeFieldUpdateOperationsInput, {
     nullable: true
   })
@@ -35,4 +25,14 @@ export class BookRatingUpdateInput {
     nullable: true
   })
   updated_at?: NullableDateTimeFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => UserUpdateOneRequiredWithoutRatingsNestedInput, {
+    nullable: true
+  })
+  author?: UserUpdateOneRequiredWithoutRatingsNestedInput | undefined;
+
+  @TypeGraphQL.Field(_type => BookUpdateOneRequiredWithoutBook_ratingsNestedInput, {
+    nullable: true
+  })
+  book?: BookUpdateOneRequiredWithoutBook_ratingsNestedInput | undefined;
 }

@@ -15,11 +15,6 @@ export class BookCreateInput {
   })
   bookid?: string | undefined;
 
-  @TypeGraphQL.Field(_type => UserCreateNestedOneWithoutBooksInput, {
-    nullable: false
-  })
-  author!: UserCreateNestedOneWithoutBooksInput;
-
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
@@ -45,13 +40,18 @@ export class BookCreateInput {
   })
   description!: string;
 
-  @TypeGraphQL.Field(_type => CommentCreateNestedManyWithoutBookInput, {
-    nullable: true
+  @TypeGraphQL.Field(_type => UserCreateNestedOneWithoutBooksInput, {
+    nullable: false
   })
-  book_comments?: CommentCreateNestedManyWithoutBookInput | undefined;
+  author!: UserCreateNestedOneWithoutBooksInput;
 
   @TypeGraphQL.Field(_type => BookRatingCreateNestedManyWithoutBookInput, {
     nullable: true
   })
   book_ratings?: BookRatingCreateNestedManyWithoutBookInput | undefined;
+
+  @TypeGraphQL.Field(_type => CommentCreateNestedManyWithoutBookInput, {
+    nullable: true
+  })
+  book_comments?: CommentCreateNestedManyWithoutBookInput | undefined;
 }

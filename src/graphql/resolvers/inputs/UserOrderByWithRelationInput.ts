@@ -52,16 +52,6 @@ export class UserOrderByWithRelationInput {
   })
   lastLoginAt?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field(_type => PostOrderByRelationAggregateInput, {
-    nullable: true
-  })
-  posts?: PostOrderByRelationAggregateInput | undefined;
-
-  @TypeGraphQL.Field(_type => CommentOrderByRelationAggregateInput, {
-    nullable: true
-  })
-  comments?: CommentOrderByRelationAggregateInput | undefined;
-
   @TypeGraphQL.Field(_type => BookOrderByRelationAggregateInput, {
     nullable: true
   })
@@ -71,4 +61,14 @@ export class UserOrderByWithRelationInput {
     nullable: true
   })
   ratings?: BookRatingOrderByRelationAggregateInput | undefined;
+
+  @TypeGraphQL.Field(_type => CommentOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  comments?: CommentOrderByRelationAggregateInput | undefined;
+
+  @TypeGraphQL.Field(_type => PostOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  posts?: PostOrderByRelationAggregateInput | undefined;
 }

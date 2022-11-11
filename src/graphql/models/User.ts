@@ -52,13 +52,13 @@ export class User {
   })
   lastLoginAt?: Date | null;
 
-  posts?: Post[];
-
-  comments?: Comment[];
-
   books?: Book[];
 
   ratings?: BookRating[];
+
+  comments?: Comment[];
+
+  posts?: Post[];
 
   @TypeGraphQL.Field(_type => UserCount, {
     nullable: true

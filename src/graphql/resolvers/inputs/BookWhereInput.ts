@@ -33,11 +33,6 @@ export class BookWhereInput {
   })
   bookid?: StringFilter | undefined;
 
-  @TypeGraphQL.Field(_type => UserRelationFilter, {
-    nullable: true
-  })
-  author?: UserRelationFilter | undefined;
-
   @TypeGraphQL.Field(_type => StringFilter, {
     nullable: true
   })
@@ -68,13 +63,18 @@ export class BookWhereInput {
   })
   description?: StringFilter | undefined;
 
-  @TypeGraphQL.Field(_type => CommentListRelationFilter, {
+  @TypeGraphQL.Field(_type => UserRelationFilter, {
     nullable: true
   })
-  book_comments?: CommentListRelationFilter | undefined;
+  author?: UserRelationFilter | undefined;
 
   @TypeGraphQL.Field(_type => BookRatingListRelationFilter, {
     nullable: true
   })
   book_ratings?: BookRatingListRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => CommentListRelationFilter, {
+    nullable: true
+  })
+  book_comments?: CommentListRelationFilter | undefined;
 }

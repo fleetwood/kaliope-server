@@ -31,11 +31,6 @@ export class CommentWhereInput {
   })
   commentid?: StringFilter | undefined;
 
-  @TypeGraphQL.Field(_type => UserRelationFilter, {
-    nullable: true
-  })
-  author?: UserRelationFilter | undefined;
-
   @TypeGraphQL.Field(_type => StringFilter, {
     nullable: true
   })
@@ -56,13 +51,18 @@ export class CommentWhereInput {
   })
   content?: StringFilter | undefined;
 
-  @TypeGraphQL.Field(_type => BookRelationFilter, {
-    nullable: true
-  })
-  book?: BookRelationFilter | undefined;
-
   @TypeGraphQL.Field(_type => StringFilter, {
     nullable: true
   })
   bookid?: StringFilter | undefined;
+
+  @TypeGraphQL.Field(_type => UserRelationFilter, {
+    nullable: true
+  })
+  author?: UserRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => BookRelationFilter, {
+    nullable: true
+  })
+  book?: BookRelationFilter | undefined;
 }

@@ -50,18 +50,18 @@ export class UserCreateWithoutBooksInput {
   })
   lastLoginAt?: Date | undefined;
 
-  @TypeGraphQL.Field(_type => PostCreateNestedManyWithoutAuthorInput, {
+  @TypeGraphQL.Field(_type => BookRatingCreateNestedManyWithoutAuthorInput, {
     nullable: true
   })
-  posts?: PostCreateNestedManyWithoutAuthorInput | undefined;
+  ratings?: BookRatingCreateNestedManyWithoutAuthorInput | undefined;
 
   @TypeGraphQL.Field(_type => CommentCreateNestedManyWithoutAuthorInput, {
     nullable: true
   })
   comments?: CommentCreateNestedManyWithoutAuthorInput | undefined;
 
-  @TypeGraphQL.Field(_type => BookRatingCreateNestedManyWithoutAuthorInput, {
+  @TypeGraphQL.Field(_type => PostCreateNestedManyWithoutAuthorInput, {
     nullable: true
   })
-  ratings?: BookRatingCreateNestedManyWithoutAuthorInput | undefined;
+  posts?: PostCreateNestedManyWithoutAuthorInput | undefined;
 }

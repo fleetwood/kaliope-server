@@ -70,16 +70,6 @@ export class UserWhereInput {
   })
   lastLoginAt?: DateTimeNullableFilter | undefined;
 
-  @TypeGraphQL.Field(_type => PostListRelationFilter, {
-    nullable: true
-  })
-  posts?: PostListRelationFilter | undefined;
-
-  @TypeGraphQL.Field(_type => CommentListRelationFilter, {
-    nullable: true
-  })
-  comments?: CommentListRelationFilter | undefined;
-
   @TypeGraphQL.Field(_type => BookListRelationFilter, {
     nullable: true
   })
@@ -89,4 +79,14 @@ export class UserWhereInput {
     nullable: true
   })
   ratings?: BookRatingListRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => CommentListRelationFilter, {
+    nullable: true
+  })
+  comments?: CommentListRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => PostListRelationFilter, {
+    nullable: true
+  })
+  posts?: PostListRelationFilter | undefined;
 }
