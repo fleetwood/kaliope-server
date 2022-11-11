@@ -14,4 +14,12 @@ export const log = (message?: any, ...optionalParams: any[]) => {
     }
 }
 
+export const logError = (message?: any, ...optionalParams: any[]) => {
+    if (!__prod__) {
+        console.error(message,optionalParams)
+    }
+};
+
 export const todo = (...params:any) => log(`!!!TODO!!!`,...params)
+
+export const now = () => new Date();

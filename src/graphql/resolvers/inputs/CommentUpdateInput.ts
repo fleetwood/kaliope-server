@@ -5,7 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { BookUpdateOneRequiredWithoutBook_commentsNestedInput } from "../inputs/BookUpdateOneRequiredWithoutBook_commentsNestedInput";
 import { NullableDateTimeFieldUpdateOperationsInput } from "../inputs/NullableDateTimeFieldUpdateOperationsInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
-import { UserUpdateOneRequiredWithoutUser_commentsNestedInput } from "../inputs/UserUpdateOneRequiredWithoutUser_commentsNestedInput";
+import { UserUpdateOneRequiredWithoutCommentsNestedInput } from "../inputs/UserUpdateOneRequiredWithoutCommentsNestedInput";
 
 @TypeGraphQL.InputType("CommentUpdateInput", {
   isAbstract: true
@@ -16,10 +16,10 @@ export class CommentUpdateInput {
   })
   commentid?: StringFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(_type => UserUpdateOneRequiredWithoutUser_commentsNestedInput, {
+  @TypeGraphQL.Field(_type => UserUpdateOneRequiredWithoutCommentsNestedInput, {
     nullable: true
   })
-  author?: UserUpdateOneRequiredWithoutUser_commentsNestedInput | undefined;
+  author?: UserUpdateOneRequiredWithoutCommentsNestedInput | undefined;
 
   @TypeGraphQL.Field(_type => NullableDateTimeFieldUpdateOperationsInput, {
     nullable: true

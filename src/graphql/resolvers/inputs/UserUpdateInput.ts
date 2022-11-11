@@ -18,75 +18,60 @@ export class UserUpdateInput {
   @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
     nullable: true
   })
-  userid?: StringFieldUpdateOperationsInput | undefined;
-
-  @TypeGraphQL.Field(_type => NullableDateTimeFieldUpdateOperationsInput, {
-    nullable: true
-  })
-  created_at?: NullableDateTimeFieldUpdateOperationsInput | undefined;
-
-  @TypeGraphQL.Field(_type => NullableDateTimeFieldUpdateOperationsInput, {
-    nullable: true
-  })
-  updated_at?: NullableDateTimeFieldUpdateOperationsInput | undefined;
-
-  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
-    nullable: true
-  })
-  username?: StringFieldUpdateOperationsInput | undefined;
+  uid?: StringFieldUpdateOperationsInput | undefined;
 
   @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
     nullable: true
   })
   email?: StringFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+  @TypeGraphQL.Field(_type => NullableBoolFieldUpdateOperationsInput, {
     nullable: true
   })
-  password?: StringFieldUpdateOperationsInput | undefined;
-
-  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
-    nullable: true
-  })
-  uid?: StringFieldUpdateOperationsInput | undefined;
+  emailVerified?: NullableBoolFieldUpdateOperationsInput | undefined;
 
   @TypeGraphQL.Field(_type => NullableBoolFieldUpdateOperationsInput, {
     nullable: true
   })
-  email_verified?: NullableBoolFieldUpdateOperationsInput | undefined;
-
-  @TypeGraphQL.Field(_type => NullableBoolFieldUpdateOperationsInput, {
-    nullable: true
-  })
-  is_anonymous?: NullableBoolFieldUpdateOperationsInput | undefined;
+  isAnonymous?: NullableBoolFieldUpdateOperationsInput | undefined;
 
   @TypeGraphQL.Field(_type => NullableStringFieldUpdateOperationsInput, {
     nullable: true
   })
-  display_name?: NullableStringFieldUpdateOperationsInput | undefined;
+  displayName?: NullableStringFieldUpdateOperationsInput | undefined;
 
   @TypeGraphQL.Field(_type => NullableStringFieldUpdateOperationsInput, {
     nullable: true
   })
-  photo_url?: NullableStringFieldUpdateOperationsInput | undefined;
+  photoURL?: NullableStringFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => NullableDateTimeFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  createdAt?: NullableDateTimeFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => NullableDateTimeFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | undefined;
 
   @TypeGraphQL.Field(_type => PostUpdateManyWithoutAuthorNestedInput, {
     nullable: true
   })
-  user_posts?: PostUpdateManyWithoutAuthorNestedInput | undefined;
+  posts?: PostUpdateManyWithoutAuthorNestedInput | undefined;
 
   @TypeGraphQL.Field(_type => CommentUpdateManyWithoutAuthorNestedInput, {
     nullable: true
   })
-  user_comments?: CommentUpdateManyWithoutAuthorNestedInput | undefined;
+  comments?: CommentUpdateManyWithoutAuthorNestedInput | undefined;
 
   @TypeGraphQL.Field(_type => BookUpdateManyWithoutAuthorNestedInput, {
     nullable: true
   })
-  user_books?: BookUpdateManyWithoutAuthorNestedInput | undefined;
+  books?: BookUpdateManyWithoutAuthorNestedInput | undefined;
 
   @TypeGraphQL.Field(_type => BookRatingUpdateManyWithoutAuthorNestedInput, {
     nullable: true
   })
-  user_ratings?: BookRatingUpdateManyWithoutAuthorNestedInput | undefined;
+  ratings?: BookRatingUpdateManyWithoutAuthorNestedInput | undefined;
 }

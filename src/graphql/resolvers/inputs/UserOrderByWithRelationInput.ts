@@ -15,22 +15,7 @@ export class UserOrderByWithRelationInput {
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
-  userid?: "asc" | "desc" | undefined;
-
-  @TypeGraphQL.Field(_type => SortOrder, {
-    nullable: true
-  })
-  created_at?: "asc" | "desc" | undefined;
-
-  @TypeGraphQL.Field(_type => SortOrder, {
-    nullable: true
-  })
-  updated_at?: "asc" | "desc" | undefined;
-
-  @TypeGraphQL.Field(_type => SortOrder, {
-    nullable: true
-  })
-  username?: "asc" | "desc" | undefined;
+  uid?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
@@ -40,50 +25,50 @@ export class UserOrderByWithRelationInput {
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
-  password?: "asc" | "desc" | undefined;
+  emailVerified?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
-  uid?: "asc" | "desc" | undefined;
+  isAnonymous?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
-  email_verified?: "asc" | "desc" | undefined;
+  displayName?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
-  is_anonymous?: "asc" | "desc" | undefined;
+  photoURL?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
-  display_name?: "asc" | "desc" | undefined;
+  createdAt?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
-  photo_url?: "asc" | "desc" | undefined;
+  lastLoginAt?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => PostOrderByRelationAggregateInput, {
     nullable: true
   })
-  user_posts?: PostOrderByRelationAggregateInput | undefined;
+  posts?: PostOrderByRelationAggregateInput | undefined;
 
   @TypeGraphQL.Field(_type => CommentOrderByRelationAggregateInput, {
     nullable: true
   })
-  user_comments?: CommentOrderByRelationAggregateInput | undefined;
+  comments?: CommentOrderByRelationAggregateInput | undefined;
 
   @TypeGraphQL.Field(_type => BookOrderByRelationAggregateInput, {
     nullable: true
   })
-  user_books?: BookOrderByRelationAggregateInput | undefined;
+  books?: BookOrderByRelationAggregateInput | undefined;
 
   @TypeGraphQL.Field(_type => BookRatingOrderByRelationAggregateInput, {
     nullable: true
   })
-  user_ratings?: BookRatingOrderByRelationAggregateInput | undefined;
+  ratings?: BookRatingOrderByRelationAggregateInput | undefined;
 }

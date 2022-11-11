@@ -2,7 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { UserCreateNestedOneWithoutUser_commentsInput } from "../inputs/UserCreateNestedOneWithoutUser_commentsInput";
+import { UserCreateNestedOneWithoutCommentsInput } from "../inputs/UserCreateNestedOneWithoutCommentsInput";
 
 @TypeGraphQL.InputType("CommentCreateWithoutBookInput", {
   isAbstract: true
@@ -13,10 +13,10 @@ export class CommentCreateWithoutBookInput {
   })
   commentid?: string | undefined;
 
-  @TypeGraphQL.Field(_type => UserCreateNestedOneWithoutUser_commentsInput, {
+  @TypeGraphQL.Field(_type => UserCreateNestedOneWithoutCommentsInput, {
     nullable: false
   })
-  author!: UserCreateNestedOneWithoutUser_commentsInput;
+  author!: UserCreateNestedOneWithoutCommentsInput;
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: true

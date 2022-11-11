@@ -7,7 +7,7 @@ import { CommentUpdateManyWithoutBookNestedInput } from "../inputs/CommentUpdate
 import { NullableDateTimeFieldUpdateOperationsInput } from "../inputs/NullableDateTimeFieldUpdateOperationsInput";
 import { NullableStringFieldUpdateOperationsInput } from "../inputs/NullableStringFieldUpdateOperationsInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
-import { UserUpdateOneRequiredWithoutUser_booksNestedInput } from "../inputs/UserUpdateOneRequiredWithoutUser_booksNestedInput";
+import { UserUpdateOneRequiredWithoutBooksNestedInput } from "../inputs/UserUpdateOneRequiredWithoutBooksNestedInput";
 
 @TypeGraphQL.InputType("BookUpdateInput", {
   isAbstract: true
@@ -18,10 +18,10 @@ export class BookUpdateInput {
   })
   bookid?: StringFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(_type => UserUpdateOneRequiredWithoutUser_booksNestedInput, {
+  @TypeGraphQL.Field(_type => UserUpdateOneRequiredWithoutBooksNestedInput, {
     nullable: true
   })
-  author?: UserUpdateOneRequiredWithoutUser_booksNestedInput | undefined;
+  author?: UserUpdateOneRequiredWithoutBooksNestedInput | undefined;
 
   @TypeGraphQL.Field(_type => NullableStringFieldUpdateOperationsInput, {
     nullable: true

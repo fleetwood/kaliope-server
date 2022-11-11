@@ -4,7 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { NullableDateTimeFieldUpdateOperationsInput } from "../inputs/NullableDateTimeFieldUpdateOperationsInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
-import { UserUpdateOneRequiredWithoutUser_ratingsNestedInput } from "../inputs/UserUpdateOneRequiredWithoutUser_ratingsNestedInput";
+import { UserUpdateOneRequiredWithoutRatingsNestedInput } from "../inputs/UserUpdateOneRequiredWithoutRatingsNestedInput";
 
 @TypeGraphQL.InputType("BookRatingUpdateWithoutBookInput", {
   isAbstract: true
@@ -15,10 +15,10 @@ export class BookRatingUpdateWithoutBookInput {
   })
   bookratingid?: StringFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(_type => UserUpdateOneRequiredWithoutUser_ratingsNestedInput, {
+  @TypeGraphQL.Field(_type => UserUpdateOneRequiredWithoutRatingsNestedInput, {
     nullable: true
   })
-  author?: UserUpdateOneRequiredWithoutUser_ratingsNestedInput | undefined;
+  author?: UserUpdateOneRequiredWithoutRatingsNestedInput | undefined;
 
   @TypeGraphQL.Field(_type => NullableDateTimeFieldUpdateOperationsInput, {
     nullable: true

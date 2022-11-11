@@ -3,7 +3,7 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { CommentCreateNestedManyWithoutBookInput } from "../inputs/CommentCreateNestedManyWithoutBookInput";
-import { UserCreateNestedOneWithoutUser_booksInput } from "../inputs/UserCreateNestedOneWithoutUser_booksInput";
+import { UserCreateNestedOneWithoutBooksInput } from "../inputs/UserCreateNestedOneWithoutBooksInput";
 
 @TypeGraphQL.InputType("BookCreateWithoutBook_ratingsInput", {
   isAbstract: true
@@ -14,10 +14,10 @@ export class BookCreateWithoutBook_ratingsInput {
   })
   bookid?: string | undefined;
 
-  @TypeGraphQL.Field(_type => UserCreateNestedOneWithoutUser_booksInput, {
+  @TypeGraphQL.Field(_type => UserCreateNestedOneWithoutBooksInput, {
     nullable: false
   })
-  author!: UserCreateNestedOneWithoutUser_booksInput;
+  author!: UserCreateNestedOneWithoutBooksInput;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: true

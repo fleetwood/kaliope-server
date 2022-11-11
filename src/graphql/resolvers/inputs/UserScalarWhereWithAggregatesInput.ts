@@ -29,55 +29,40 @@ export class UserScalarWhereWithAggregatesInput {
   @TypeGraphQL.Field(_type => StringWithAggregatesFilter, {
     nullable: true
   })
-  userid?: StringWithAggregatesFilter | undefined;
-
-  @TypeGraphQL.Field(_type => DateTimeNullableWithAggregatesFilter, {
-    nullable: true
-  })
-  created_at?: DateTimeNullableWithAggregatesFilter | undefined;
-
-  @TypeGraphQL.Field(_type => DateTimeNullableWithAggregatesFilter, {
-    nullable: true
-  })
-  updated_at?: DateTimeNullableWithAggregatesFilter | undefined;
-
-  @TypeGraphQL.Field(_type => StringWithAggregatesFilter, {
-    nullable: true
-  })
-  username?: StringWithAggregatesFilter | undefined;
+  uid?: StringWithAggregatesFilter | undefined;
 
   @TypeGraphQL.Field(_type => StringWithAggregatesFilter, {
     nullable: true
   })
   email?: StringWithAggregatesFilter | undefined;
 
-  @TypeGraphQL.Field(_type => StringWithAggregatesFilter, {
+  @TypeGraphQL.Field(_type => BoolNullableWithAggregatesFilter, {
     nullable: true
   })
-  password?: StringWithAggregatesFilter | undefined;
-
-  @TypeGraphQL.Field(_type => StringWithAggregatesFilter, {
-    nullable: true
-  })
-  uid?: StringWithAggregatesFilter | undefined;
+  emailVerified?: BoolNullableWithAggregatesFilter | undefined;
 
   @TypeGraphQL.Field(_type => BoolNullableWithAggregatesFilter, {
     nullable: true
   })
-  email_verified?: BoolNullableWithAggregatesFilter | undefined;
-
-  @TypeGraphQL.Field(_type => BoolNullableWithAggregatesFilter, {
-    nullable: true
-  })
-  is_anonymous?: BoolNullableWithAggregatesFilter | undefined;
+  isAnonymous?: BoolNullableWithAggregatesFilter | undefined;
 
   @TypeGraphQL.Field(_type => StringNullableWithAggregatesFilter, {
     nullable: true
   })
-  display_name?: StringNullableWithAggregatesFilter | undefined;
+  displayName?: StringNullableWithAggregatesFilter | undefined;
 
   @TypeGraphQL.Field(_type => StringNullableWithAggregatesFilter, {
     nullable: true
   })
-  photo_url?: StringNullableWithAggregatesFilter | undefined;
+  photoURL?: StringNullableWithAggregatesFilter | undefined;
+
+  @TypeGraphQL.Field(_type => DateTimeNullableWithAggregatesFilter, {
+    nullable: true
+  })
+  createdAt?: DateTimeNullableWithAggregatesFilter | undefined;
+
+  @TypeGraphQL.Field(_type => DateTimeNullableWithAggregatesFilter, {
+    nullable: true
+  })
+  lastLoginAt?: DateTimeNullableWithAggregatesFilter | undefined;
 }

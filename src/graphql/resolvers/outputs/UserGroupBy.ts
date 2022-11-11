@@ -13,57 +13,42 @@ export class UserGroupBy {
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
-  userid!: string;
-
-  @TypeGraphQL.Field(_type => Date, {
-    nullable: true
-  })
-  created_at!: Date | null;
-
-  @TypeGraphQL.Field(_type => Date, {
-    nullable: true
-  })
-  updated_at!: Date | null;
-
-  @TypeGraphQL.Field(_type => String, {
-    nullable: false
-  })
-  username!: string;
+  uid!: string;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
   email!: string;
 
-  @TypeGraphQL.Field(_type => String, {
-    nullable: false
+  @TypeGraphQL.Field(_type => Boolean, {
+    nullable: true
   })
-  password!: string;
-
-  @TypeGraphQL.Field(_type => String, {
-    nullable: false
-  })
-  uid!: string;
+  emailVerified!: boolean | null;
 
   @TypeGraphQL.Field(_type => Boolean, {
     nullable: true
   })
-  email_verified!: boolean | null;
-
-  @TypeGraphQL.Field(_type => Boolean, {
-    nullable: true
-  })
-  is_anonymous!: boolean | null;
+  isAnonymous!: boolean | null;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
-  display_name!: string | null;
+  displayName!: string | null;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
-  photo_url!: string | null;
+  photoURL!: string | null;
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
+  })
+  createdAt!: Date | null;
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
+  })
+  lastLoginAt!: Date | null;
 
   @TypeGraphQL.Field(_type => UserCountAggregate, {
     nullable: true

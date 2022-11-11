@@ -5,7 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { NullableDateTimeFieldUpdateOperationsInput } from "../inputs/NullableDateTimeFieldUpdateOperationsInput";
 import { NullableStringFieldUpdateOperationsInput } from "../inputs/NullableStringFieldUpdateOperationsInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
-import { UserUpdateOneRequiredWithoutUser_postsNestedInput } from "../inputs/UserUpdateOneRequiredWithoutUser_postsNestedInput";
+import { UserUpdateOneRequiredWithoutPostsNestedInput } from "../inputs/UserUpdateOneRequiredWithoutPostsNestedInput";
 
 @TypeGraphQL.InputType("PostUpdateInput", {
   isAbstract: true
@@ -46,8 +46,8 @@ export class PostUpdateInput {
   })
   content?: StringFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(_type => UserUpdateOneRequiredWithoutUser_postsNestedInput, {
+  @TypeGraphQL.Field(_type => UserUpdateOneRequiredWithoutPostsNestedInput, {
     nullable: true
   })
-  author?: UserUpdateOneRequiredWithoutUser_postsNestedInput | undefined;
+  author?: UserUpdateOneRequiredWithoutPostsNestedInput | undefined;
 }

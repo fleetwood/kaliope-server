@@ -8,57 +8,42 @@ import { DecimalJSScalar } from "../../scalars";
 })
 export class UserCreateManyInput {
   @TypeGraphQL.Field(_type => String, {
-    nullable: true
-  })
-  userid?: string | undefined;
-
-  @TypeGraphQL.Field(_type => Date, {
-    nullable: true
-  })
-  created_at?: Date | undefined;
-
-  @TypeGraphQL.Field(_type => Date, {
-    nullable: true
-  })
-  updated_at?: Date | undefined;
-
-  @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
-  username!: string;
+  uid!: string;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
   email!: string;
 
-  @TypeGraphQL.Field(_type => String, {
-    nullable: false
+  @TypeGraphQL.Field(_type => Boolean, {
+    nullable: true
   })
-  password!: string;
-
-  @TypeGraphQL.Field(_type => String, {
-    nullable: false
-  })
-  uid!: string;
+  emailVerified?: boolean | undefined;
 
   @TypeGraphQL.Field(_type => Boolean, {
     nullable: true
   })
-  email_verified?: boolean | undefined;
-
-  @TypeGraphQL.Field(_type => Boolean, {
-    nullable: true
-  })
-  is_anonymous?: boolean | undefined;
+  isAnonymous?: boolean | undefined;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
-  display_name?: string | undefined;
+  displayName?: string | undefined;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
-  photo_url?: string | undefined;
+  photoURL?: string | undefined;
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
+  })
+  createdAt?: Date | undefined;
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
+  })
+  lastLoginAt?: Date | undefined;
 }

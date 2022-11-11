@@ -33,75 +33,60 @@ export class UserWhereInput {
   @TypeGraphQL.Field(_type => StringFilter, {
     nullable: true
   })
-  userid?: StringFilter | undefined;
-
-  @TypeGraphQL.Field(_type => DateTimeNullableFilter, {
-    nullable: true
-  })
-  created_at?: DateTimeNullableFilter | undefined;
-
-  @TypeGraphQL.Field(_type => DateTimeNullableFilter, {
-    nullable: true
-  })
-  updated_at?: DateTimeNullableFilter | undefined;
-
-  @TypeGraphQL.Field(_type => StringFilter, {
-    nullable: true
-  })
-  username?: StringFilter | undefined;
+  uid?: StringFilter | undefined;
 
   @TypeGraphQL.Field(_type => StringFilter, {
     nullable: true
   })
   email?: StringFilter | undefined;
 
-  @TypeGraphQL.Field(_type => StringFilter, {
+  @TypeGraphQL.Field(_type => BoolNullableFilter, {
     nullable: true
   })
-  password?: StringFilter | undefined;
-
-  @TypeGraphQL.Field(_type => StringFilter, {
-    nullable: true
-  })
-  uid?: StringFilter | undefined;
+  emailVerified?: BoolNullableFilter | undefined;
 
   @TypeGraphQL.Field(_type => BoolNullableFilter, {
     nullable: true
   })
-  email_verified?: BoolNullableFilter | undefined;
-
-  @TypeGraphQL.Field(_type => BoolNullableFilter, {
-    nullable: true
-  })
-  is_anonymous?: BoolNullableFilter | undefined;
+  isAnonymous?: BoolNullableFilter | undefined;
 
   @TypeGraphQL.Field(_type => StringNullableFilter, {
     nullable: true
   })
-  display_name?: StringNullableFilter | undefined;
+  displayName?: StringNullableFilter | undefined;
 
   @TypeGraphQL.Field(_type => StringNullableFilter, {
     nullable: true
   })
-  photo_url?: StringNullableFilter | undefined;
+  photoURL?: StringNullableFilter | undefined;
+
+  @TypeGraphQL.Field(_type => DateTimeNullableFilter, {
+    nullable: true
+  })
+  createdAt?: DateTimeNullableFilter | undefined;
+
+  @TypeGraphQL.Field(_type => DateTimeNullableFilter, {
+    nullable: true
+  })
+  lastLoginAt?: DateTimeNullableFilter | undefined;
 
   @TypeGraphQL.Field(_type => PostListRelationFilter, {
     nullable: true
   })
-  user_posts?: PostListRelationFilter | undefined;
+  posts?: PostListRelationFilter | undefined;
 
   @TypeGraphQL.Field(_type => CommentListRelationFilter, {
     nullable: true
   })
-  user_comments?: CommentListRelationFilter | undefined;
+  comments?: CommentListRelationFilter | undefined;
 
   @TypeGraphQL.Field(_type => BookListRelationFilter, {
     nullable: true
   })
-  user_books?: BookListRelationFilter | undefined;
+  books?: BookListRelationFilter | undefined;
 
   @TypeGraphQL.Field(_type => BookRatingListRelationFilter, {
     nullable: true
   })
-  user_ratings?: BookRatingListRelationFilter | undefined;
+  ratings?: BookRatingListRelationFilter | undefined;
 }

@@ -3,7 +3,7 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { BookCreateNestedOneWithoutBook_commentsInput } from "../inputs/BookCreateNestedOneWithoutBook_commentsInput";
-import { UserCreateNestedOneWithoutUser_commentsInput } from "../inputs/UserCreateNestedOneWithoutUser_commentsInput";
+import { UserCreateNestedOneWithoutCommentsInput } from "../inputs/UserCreateNestedOneWithoutCommentsInput";
 
 @TypeGraphQL.InputType("CommentCreateInput", {
   isAbstract: true
@@ -14,10 +14,10 @@ export class CommentCreateInput {
   })
   commentid?: string | undefined;
 
-  @TypeGraphQL.Field(_type => UserCreateNestedOneWithoutUser_commentsInput, {
+  @TypeGraphQL.Field(_type => UserCreateNestedOneWithoutCommentsInput, {
     nullable: false
   })
-  author!: UserCreateNestedOneWithoutUser_commentsInput;
+  author!: UserCreateNestedOneWithoutCommentsInput;
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: true

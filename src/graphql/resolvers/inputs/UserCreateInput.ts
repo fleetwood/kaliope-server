@@ -12,77 +12,62 @@ import { PostCreateNestedManyWithoutAuthorInput } from "../inputs/PostCreateNest
 })
 export class UserCreateInput {
   @TypeGraphQL.Field(_type => String, {
-    nullable: true
-  })
-  userid?: string | undefined;
-
-  @TypeGraphQL.Field(_type => Date, {
-    nullable: true
-  })
-  created_at?: Date | undefined;
-
-  @TypeGraphQL.Field(_type => Date, {
-    nullable: true
-  })
-  updated_at?: Date | undefined;
-
-  @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
-  username!: string;
+  uid!: string;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
   email!: string;
 
-  @TypeGraphQL.Field(_type => String, {
-    nullable: false
+  @TypeGraphQL.Field(_type => Boolean, {
+    nullable: true
   })
-  password!: string;
-
-  @TypeGraphQL.Field(_type => String, {
-    nullable: false
-  })
-  uid!: string;
+  emailVerified?: boolean | undefined;
 
   @TypeGraphQL.Field(_type => Boolean, {
     nullable: true
   })
-  email_verified?: boolean | undefined;
-
-  @TypeGraphQL.Field(_type => Boolean, {
-    nullable: true
-  })
-  is_anonymous?: boolean | undefined;
+  isAnonymous?: boolean | undefined;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
-  display_name?: string | undefined;
+  displayName?: string | undefined;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
-  photo_url?: string | undefined;
+  photoURL?: string | undefined;
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
+  })
+  createdAt?: Date | undefined;
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
+  })
+  lastLoginAt?: Date | undefined;
 
   @TypeGraphQL.Field(_type => PostCreateNestedManyWithoutAuthorInput, {
     nullable: true
   })
-  user_posts?: PostCreateNestedManyWithoutAuthorInput | undefined;
+  posts?: PostCreateNestedManyWithoutAuthorInput | undefined;
 
   @TypeGraphQL.Field(_type => CommentCreateNestedManyWithoutAuthorInput, {
     nullable: true
   })
-  user_comments?: CommentCreateNestedManyWithoutAuthorInput | undefined;
+  comments?: CommentCreateNestedManyWithoutAuthorInput | undefined;
 
   @TypeGraphQL.Field(_type => BookCreateNestedManyWithoutAuthorInput, {
     nullable: true
   })
-  user_books?: BookCreateNestedManyWithoutAuthorInput | undefined;
+  books?: BookCreateNestedManyWithoutAuthorInput | undefined;
 
   @TypeGraphQL.Field(_type => BookRatingCreateNestedManyWithoutAuthorInput, {
     nullable: true
   })
-  user_ratings?: BookRatingCreateNestedManyWithoutAuthorInput | undefined;
+  ratings?: BookRatingCreateNestedManyWithoutAuthorInput | undefined;
 }
